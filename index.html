@@ -8,61 +8,100 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
       margin: 0;
-      padding: 40px 20px;
       background: #f5f5f5;
     }
 
-    .contenedor {
+    .pantalla {
       max-width: 600px;
-      margin: auto;
+      margin: 30px auto;
       background: white;
       padding: 30px;
       border-radius: 15px;
+      text-align: center;
     }
 
     h1 {
       font-size: 40px;
-      margin-bottom: 50px;
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 30px;
     }
 
     #mensaje {
-      font-size: 28px;
-      margin-bottom: 40px;
-    }
-
-    #titulo {
-      font-size: 32px;
-      margin-bottom: 40px;
+      font-size: 25px;
+      margin-bottom: 35px;
     }
 
     .idiomas {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       align-items: center;
     }
 
     button {
-      width: 220px;
-      padding: 18px;
-      font-size: 24px;
+      width: 240px;
+      padding: 17px;
+      font-size: 22px;
       border: none;
       border-radius: 12px;
-      cursor: pointer;
       background: #eeeeee;
+      cursor: pointer;
     }
 
     button:active {
       transform: scale(0.97);
+    }
+
+    #continuar {
+      display: none;
+      margin: 30px auto 0;
+      background: #20a050;
+      color: white;
+    }
+
+    #principal {
+      display: none;
+    }
+
+    .buscador {
+      width: 90%;
+      padding: 15px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .menu button {
+      width: 100%;
+      font-size: 18px;
+    }
+
+    .productos {
+      margin-top: 30px;
+      padding: 25px;
+      background: #f5f5f5;
+      border-radius: 12px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="contenedor">
+  <!-- PANTALLA DE BIENVENIDA -->
+
+  <div class="pantalla" id="bienvenida">
 
     <h1>Mercado97</h1>
 
@@ -86,35 +125,178 @@
 
     </div>
 
+    <button id="continuar" onclick="entrar()">
+      Continuar
+    </button>
+
   </div>
 
+
+  <!-- PÁGINA PRINCIPAL -->
+
+  <div class="pantalla" id="principal">
+
+    <h1>Mercado97</h1>
+
+    <h2 id="bienvenidaPrincipal">
+      Bienvenido a Mercado97
+    </h2>
+
+    <input
+      class="buscador"
+      id="buscador"
+      type="text"
+      placeholder="Buscar productos..."
+    >
+
+    <div class="menu">
+
+      <button>🛍️ Categorías</button>
+
+      <button>🛒 Carrito</button>
+
+      <button>❤️ Favoritos</button>
+
+      <button>👤 Mi cuenta</button>
+
+    </div>
+
+    <div class="productos">
+
+      <h2 id="productosTitulo">
+        Productos
+      </h2>
+
+      <p id="productosTexto">
+        Aquí aparecerán los productos de Mercado97.
+      </p>
+
+    </div>
+
+  </div>
+
+
   <script>
+
+    let idiomaActual = "es";
+
+
     function cambiarIdioma(idioma) {
 
+      idiomaActual = idioma;
+
+      document.documentElement.lang = idioma;
+
+      document.getElementById("continuar").style.display = "block";
+
+
       if (idioma === "es") {
-        document.documentElement.lang = "es";
+
         document.getElementById("mensaje").textContent =
           "Tu mercado, fácil y rápido.";
+
         document.getElementById("titulo").textContent =
           "Bienvenido a Mercado97";
+
+        document.getElementById("continuar").textContent =
+          "Continuar";
+
       }
+
 
       if (idioma === "pt") {
+
         document.documentElement.lang = "pt-BR";
+
         document.getElementById("mensaje").textContent =
           "Seu mercado, fácil e rápido.";
+
         document.getElementById("titulo").textContent =
           "Bem-vindo ao Mercado97";
+
+        document.getElementById("continuar").textContent =
+          "Continuar";
+
       }
 
+
       if (idioma === "en") {
+
         document.documentElement.lang = "en-US";
+
         document.getElementById("mensaje").textContent =
           "Your marketplace, easy and fast.";
+
         document.getElementById("titulo").textContent =
           "Welcome to Mercado97";
+
+        document.getElementById("continuar").textContent =
+          "Continue";
+
       }
+
     }
+
+
+    function entrar() {
+
+      document.getElementById("bienvenida").style.display = "none";
+
+      document.getElementById("principal").style.display = "block";
+
+
+      if (idiomaActual === "es") {
+
+        document.getElementById("bienvenidaPrincipal").textContent =
+          "Bienvenido a Mercado97";
+
+        document.getElementById("buscador").placeholder =
+          "Buscar productos...";
+
+        document.getElementById("productosTitulo").textContent =
+          "Productos";
+
+        document.getElementById("productosTexto").textContent =
+          "Aquí aparecerán los productos de Mercado97.";
+
+      }
+
+
+      if (idiomaActual === "pt") {
+
+        document.getElementById("bienvenidaPrincipal").textContent =
+          "Bem-vindo ao Mercado97";
+
+        document.getElementById("buscador").placeholder =
+          "Buscar produtos...";
+
+        document.getElementById("productosTitulo").textContent =
+          "Produtos";
+
+        document.getElementById("productosTexto").textContent =
+          "Aqui aparecerão os produtos do Mercado97.";
+
+      }
+
+
+      if (idiomaActual === "en") {
+
+        document.getElementById("bienvenidaPrincipal").textContent =
+          "Welcome to Mercado97";
+
+        document.getElementById("buscador").placeholder =
+          "Search products...";
+
+        document.getElementById("productosTitulo").textContent =
+          "Products";
+
+        document.getElementById("productosTexto").textContent =
+          "Mercado97 products will appear here.";
+
+      }
+
+    }
+
   </script>
 
 </body>
