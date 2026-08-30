@@ -5,77 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mercado97</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 40px 20px;
+      background: #f5f5f5;
+    }
+
+    .contenedor {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    .idiomas button {
+      padding: 12px 18px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .idiomas button:hover {
+      opacity: 0.8;
+    }
+  </style>
 </head>
 
 <body>
 
-  <header class="encabezado">
-    <div>
-      <h1>Mercado97</h1>
-      <p>Tu mercado, fácil y rápido.</p>
+  <div class="contenedor">
+
+    <h1>Mercado97</h1>
+
+    <p id="mensaje">
+      Tu mercado, fácil y rápido.
+    </p>
+
+    <h2 id="titulo">
+      Bienvenido a Mercado97
+    </h2>
+
+    <div class="idiomas">
+      <button onclick="cambiarIdioma('es')">🇪🇸 Español</button>
+      <button onclick="cambiarIdioma('pt')">🇧🇷 Português</button>
+      <button onclick="cambiarIdioma('en')">🇺🇸 English</button>
     </div>
 
-    <button class="idioma">ES ▾</button>
-  </header>
+  </div>
 
-  <main>
+  <script>
 
-    <section class="buscador">
-      <input
-        type="search"
-        placeholder="¿Qué estás buscando?"
-        aria-label="Buscar productos"
-      >
-      <button>Buscar</button>
-    </section>
+    function cambiarIdioma(idioma) {
 
-    <section>
-      <h2>Categorías</h2>
+      if (idioma === "es") {
+        document.documentElement.lang = "es";
+        document.getElementById("mensaje").textContent =
+          "Tu mercado, fácil y rápido.";
+        document.getElementById("titulo").textContent =
+          "Bienvenido a Mercado97";
+      }
 
-      <div class="categorias">
-        <button>🛒 Supermercado</button>
-        <button>🍎 Alimentos</button>
-        <button>👕 Ropa</button>
-        <button>📱 Tecnología</button>
-        <button>🏠 Hogar</button>
-        <button>🚗 Vehículos</button>
-      </div>
-    </section>
+      if (idioma === "pt") {
+        document.documentElement.lang = "pt-BR";
+        document.getElementById("mensaje").textContent =
+          "Seu mercado, fácil e rápido.";
+        document.getElementById("titulo").textContent =
+          "Bem-vindo ao Mercado97";
+      }
 
-    <section>
-      <div class="titulo-seccion">
-        <h2>Productos destacados</h2>
-        <button class="ver-todo">Ver todo</button>
-      </div>
+      if (idioma === "en") {
+        document.documentElement.lang = "en-US";
+        document.getElementById("mensaje").textContent =
+          "Your marketplace, easy and fast.";
+        document.getElementById("titulo").textContent =
+          "Welcome to Mercado97";
+      }
 
-      <div class="productos">
+    }
 
-        <article class="producto">
-          <div class="imagen-producto">🛍️</div>
-          <h3>Producto destacado</h3>
-          <p class="precio">$0,00</p>
-          <button class="comprar">Ver producto</button>
-        </article>
+  </s  </script>
 
-        <article class="producto">
-          <div class="imagen-producto">📦</div>
-          <h3>Nuevo producto</h3>
-          <p class="precio">$0,00</p>
-          <button class="comprar">Ver producto</button>
-        </article>
+</bod</body>
+</htm</html>
 
-      </div>
-    </section>
-
-  </main>
-
-  <nav class="menu-inferior">
-    <button>🏠<span>Inicio</span></button>
-    <button>🔎<span>Buscar</span></button>
-    <button>🛒<span>Carrito</span></button>
-    <button>👤<span>Cuenta</span></button>
-  </nav>
-
-</body>
-</html>
+</bod
+</htm
