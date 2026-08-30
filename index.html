@@ -4,10 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mercado97</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <h1>Mercado97</h1>
-  <p>Tu mercado, fácil y rápido.</p>
+
+  <header class="encabezado">
+    <div>
+      <h1>Mercado97</h1>
+      <p>Tu mercado, fácil y rápido.</p>
+    </div>
+
+    <button class="idioma">ES ▾</button>
+  </header>
+
+  <main>
+
+    <section class="buscador">
+      <input
+        type="search"
+        placeholder="¿Qué estás buscando?"
+        aria-label="Buscar productos"
+      >
+      <button>Buscar</button>
+    </section>
+
+    <section>
+      <h2>Categorías</h2>
+
+      <div class="categorias">
+        <button>🛒 Supermercado</button>
+        <button>🍎 Alimentos</button>
+        <button>👕 Ropa</button>
+        <button>📱 Tecnología</button>
+        <button>🏠 Hogar</button>
+        <button>🚗 Vehículos</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="titulo-seccion">
+        <h2>Productos destacados</h2>
+        <button class="ver-todo">Ver todo</button>
+      </div>
+
+      <div class="productos">
+
+        <article class="producto">
+          <div class="imagen-producto">🛍️</div>
+          <h3>Producto destacado</h3>
+          <p class="precio">$0,00</p>
+          <button class="comprar">Ver producto</button>
+        </article>
+
+        <article class="producto">
+          <div class="imagen-producto">📦</div>
+          <h3>Nuevo producto</h3>
+          <p class="precio">$0,00</p>
+          <button class="comprar">Ver producto</button>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="menu-inferior">
+    <button>🏠<span>Inicio</span></button>
+    <button>🔎<span>Buscar</span></button>
+    <button>🛒<span>Carrito</span></button>
+    <button>👤<span>Cuenta</span></button>
+  </nav>
+
 </body>
 </html>
