@@ -24,19 +24,38 @@
 
     h1 {
       font-size: 40px;
+      margin-bottom: 50px;
     }
 
-    .idiomas button {
-      padding: 12px 18px;
-      margin: 5px;
+    #mensaje {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    #titulo {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .idiomas {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    button {
+      width: 220px;
+      padding: 18px;
+      font-size: 24px;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      font-size: 16px;
+      background: #eeeeee;
     }
 
-    .idiomas button:hover {
-      opacity: 0.8;
+    button:active {
+      transform: scale(0.97);
     }
   </style>
 </head>
@@ -47,24 +66,29 @@
 
     <h1>Mercado97</h1>
 
-    <p id="mensaje">
-      Tu mercado, fácil y rápido.
-    </p>
+    <p id="mensaje">Tu mercado, fácil y rápido.</p>
 
-    <h2 id="titulo">
-      Bienvenido a Mercado97
-    </h2>
+    <h2 id="titulo">Bienvenido a Mercado97</h2>
 
     <div class="idiomas">
-      <button onclick="cambiarIdioma('es')">🇪🇸 Español</button>
-      <button onclick="cambiarIdioma('pt')">🇧🇷 Português</button>
-      <button onclick="cambiarIdioma('en')">🇺🇸 English</button>
+
+      <button onclick="cambiarIdioma('es')">
+        🇪🇸 Español
+      </button>
+
+      <button onclick="cambiarIdioma('pt')">
+        🇧🇷 Português
+      </button>
+
+      <button onclick="cambiarIdioma('en')">
+        🇺🇸 English
+      </button>
+
     </div>
 
   </div>
 
   <script>
-
     function cambiarIdioma(idioma) {
 
       if (idioma === "es") {
@@ -90,7 +114,8 @@
         document.getElementById("titulo").textContent =
           "Welcome to Mercado97";
       }
-      </script>
+    }
+  </script>
 
 </body>
 </html>
