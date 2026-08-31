@@ -6,421 +6,592 @@
 <title>Mercado97</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f4f6f8;
-  color:#222;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header{
-  background:#fff;
-  position:sticky;
-  top:0;
-  z-index:100;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
+:root {
+    --negro: #111111;
+    --negro2: #1c1c1c;
+    --amarillo: #ffd600;
+    --rojo: #e53935;
+    --blanco: #ffffff;
+    --gris: #f4f4f4;
+    --texto: #222222;
 }
 
-.top{
-  max-width:1100px;
-  margin:auto;
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  gap:15px;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--gris);
+    color: var(--texto);
 }
 
-.logo{
-  font-size:27px;
-  font-weight:bold;
-  color:#16853d;
-  white-space:nowrap;
+/* ================= HEADER ================= */
+
+header {
+    background: var(--negro);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0,0,0,.25);
 }
 
-.search{
-  flex:1;
-  display:flex;
+.header-top {
+    max-width: 1200px;
+    margin: auto;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
-.search input{
-  width:100%;
-  padding:12px 15px;
-  border:1px solid #ddd;
-  border-radius:12px 0 0 12px;
-  font-size:15px;
-  outline:none;
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    color: white;
+    white-space: nowrap;
 }
 
-.search button{
-  border:0;
-  background:#16853d;
-  color:white;
-  padding:0 17px;
-  border-radius:0 12px 12px 0;
-  font-size:18px;
+.logo span {
+    color: var(--amarillo);
 }
 
-.lang{
-  padding:9px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  background:white;
+.search {
+    flex: 1;
+    display: flex;
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    height: 44px;
 }
 
-.nav{
-  max-width:1100px;
-  margin:auto;
-  padding:0 18px 12px;
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
+.search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 18px;
+    font-size: 15px;
 }
 
-.nav button{
-  border:0;
-  background:#f0f2f3;
-  padding:9px 13px;
-  border-radius:20px;
-  white-space:nowrap;
+.search button {
+    width: 52px;
+    border: none;
+    background: var(--amarillo);
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.hero{
-  max-width:1100px;
-  margin:20px auto;
-  padding:35px 22px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#16853d,#28a955);
-  color:white;
+.header-icons {
+    display: flex;
+    gap: 10px;
 }
 
-.hero h1{
-  margin:0 0 10px;
-  font-size:32px;
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: var(--negro2);
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+    position: relative;
 }
 
-.hero p{
-  font-size:17px;
-  margin-bottom:20px;
+.cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--rojo);
+    color: white;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero button{
-  border:0;
-  padding:12px 20px;
-  border-radius:12px;
-  background:white;
-  color:#16853d;
-  font-weight:bold;
+/* ================= MENU ================= */
+
+.nav {
+    border-top: 1px solid #333;
 }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:0 18px 100px;
+.nav-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    gap: 24px;
+    padding: 10px 18px;
+    overflow-x: auto;
 }
 
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:25px 0 15px;
+.nav button {
+    background: none;
+    border: none;
+    color: white;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.section-title h2{
-  margin:0;
+.nav button:hover {
+    color: var(--amarillo);
 }
 
-.categories{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding-bottom:5px;
+/* ================= HERO ================= */
+
+.hero {
+    max-width: 1200px;
+    margin: 18px auto;
+    padding: 0 18px;
 }
 
-.category{
-  min-width:110px;
-  background:white;
-  border:1px solid #eee;
-  border-radius:15px;
-  padding:15px 10px;
-  text-align:center;
+.hero-box {
+    min-height: 310px;
+    border-radius: 24px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 20%, #ffd600 0, transparent 25%),
+        linear-gradient(120deg, #111111, #292929);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 38px;
+    position: relative;
 }
 
-.category .icon{
-  font-size:30px;
-  display:block;
-  margin-bottom:7px;
+.hero-content {
+    max-width: 560px;
+    z-index: 2;
 }
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-  gap:15px;
+.hero small {
+    color: var(--amarillo);
+    font-weight: bold;
+    font-size: 15px;
 }
 
-.product{
-  background:white;
-  border-radius:17px;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
-  position:relative;
+.hero h1 {
+    font-size: clamp(32px, 6vw, 58px);
+    line-height: 1;
+    margin: 12px 0;
 }
 
-.product-img{
-  height:170px;
-  background:#eef1f2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:65px;
+.hero h1 span {
+    color: var(--amarillo);
 }
 
-.product-info{
-  padding:14px;
+.hero p {
+    font-size: 17px;
+    line-height: 1.5;
+    color: #ddd;
 }
 
-.product-info h3{
-  margin:0 0 8px;
-  font-size:16px;
+.hero-button {
+    margin-top: 22px;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    background: var(--amarillo);
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-.price{
-  color:#16853d;
-  font-weight:bold;
-  font-size:19px;
-  margin:7px 0;
+.hero-circle {
+    position: absolute;
+    right: 70px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: var(--amarillo);
+    opacity: .15;
 }
 
-.product-info small{
-  color:#777;
+/* ================= SECCIONES ================= */
+
+.section {
+    max-width: 1200px;
+    margin: 28px auto;
+    padding: 0 18px;
 }
 
-.product-actions{
-  display:flex;
-  gap:7px;
-  margin-top:12px;
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
 }
 
-.product-actions button{
-  flex:1;
-  border:0;
-  padding:10px 5px;
-  border-radius:10px;
-  background:#16853d;
-  color:white;
+.section-title h2 {
+    font-size: 23px;
 }
 
-.favorite{
-  position:absolute;
-  right:10px;
-  top:10px;
-  border:0;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  background:white;
-  font-size:18px;
+.section-title span {
+    color: var(--rojo);
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:white;
-  border-top:1px solid #ddd;
-  display:flex;
-  justify-content:center;
-  z-index:200;
+/* ================= CATEGORIAS ================= */
+
+.categories {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 8px;
 }
 
-.bottom-inner{
-  width:100%;
-  max-width:700px;
-  display:flex;
-  justify-content:space-around;
+.category {
+    min-width: 105px;
+    background: white;
+    border-radius: 18px;
+    padding: 16px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
 }
 
-.bottom button{
-  background:none;
-  border:0;
-  padding:9px 12px;
-  font-size:12px;
+.category:hover {
+    transform: translateY(-5px);
 }
 
-.bottom span{
-  display:block;
-  font-size:21px;
+.category-icon {
+    width: 55px;
+    height: 55px;
+    margin: auto;
+    border-radius: 50%;
+    background: #111;
+    color: var(--amarillo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
 }
 
-.modal-bg{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:500;
-  padding:20px;
-  overflow:auto;
+.category p {
+    margin-top: 9px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-.modal{
-  background:white;
-  max-width:600px;
-  margin:30px auto;
-  border-radius:20px;
-  padding:22px;
+/* ================= PRODUCTOS ================= */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
 }
 
-.modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.product {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    transition: .25s;
+    box-shadow: 0 4px 14px rgba(0,0,0,.07);
 }
 
-.close{
-  border:0;
-  background:#eee;
-  border-radius:50%;
-  width:35px;
-  height:35px;
+.product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
 }
 
-.cart-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 0;
-  border-bottom:1px solid #eee;
+.product-img {
+    height: 190px;
+    background: linear-gradient(135deg, #eeeeee, #d8d8d8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
 }
 
-.cart-item .emoji{
-  font-size:35px;
+.discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--rojo);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: bold;
 }
 
-.qty{
-  margin-left:auto;
-  display:flex;
-  align-items:center;
-  gap:8px;
+.favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    font-size: 17px;
 }
 
-.qty button{
-  border:0;
-  width:28px;
-  height:28px;
-  border-radius:8px;
+.product-info {
+    padding: 13px;
 }
 
-.total{
-  font-size:22px;
-  font-weight:bold;
-  margin:20px 0;
+.product-name {
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 35px;
 }
 
-.primary{
-  width:100%;
-  padding:13px;
-  background:#16853d;
-  color:white;
-  border:0;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:bold;
+.stars {
+    color: #ffb300;
+    font-size: 13px;
+    margin: 7px 0;
 }
 
-.form-group{
-  margin-bottom:14px;
+.old-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 12px;
 }
 
-.form-group label{
-  display:block;
-  margin-bottom:6px;
-  font-weight:bold;
+.price {
+    font-size: 21px;
+    font-weight: 900;
+    margin: 3px 0;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:10px;
+.shipping {
+    color: #159447;
+    font-size: 12px;
+    margin-bottom: 10px;
 }
 
-.empty{
-  text-align:center;
-  padding:30px;
-  color:#777;
+.add-cart {
+    width: 100%;
+    border: none;
+    background: var(--negro);
+    color: white;
+    padding: 11px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.notice{
-  padding:12px;
-  background:#eaf7ef;
-  border-radius:10px;
-  margin-bottom:15px;
+.add-cart:hover {
+    background: var(--rojo);
 }
 
-.dark{
-  background:#17191a;
-  color:#eee;
+/* ================= OFERTA ================= */
+
+.offer {
+    background: var(--rojo);
+    color: white;
+    border-radius: 22px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.dark header,
-.dark .product,
-.dark .category,
-.dark .modal,
-.dark .bottom{
-  background:#242728;
-  color:#eee;
+.offer h2 {
+    font-size: 28px;
 }
 
-.dark .search input,
-.dark .lang,
-.dark .form-group input,
-.dark .form-group select,
-.dark .form-group textarea{
-  background:#333;
-  color:white;
-  border-color:#555;
+.timer {
+    display: flex;
+    gap: 8px;
 }
 
-@media(max-width:600px){
-  .top{
-    flex-wrap:wrap;
-  }
+.time-box {
+    background: rgba(0,0,0,.25);
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 52px;
+    text-align: center;
+}
 
-  .logo{
-    width:100%;
-    text-align:center;
-  }
+.time-box strong {
+    display: block;
+    font-size: 20px;
+}
 
-  .search{
-    order:3;
-    width:100%;
-  }
+/* ================= FOOTER ================= */
 
-  .hero h1{
-    font-size:26px;
-  }
+footer {
+    margin-top: 40px;
+    background: var(--negro);
+    color: white;
+    padding: 35px 18px;
+}
 
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
 
-  .product-img{
-    height:135px;
-    font-size:50px;
-  }
+.footer-logo {
+    font-size: 25px;
+    font-weight: bold;
+}
 
-  .product-info{
-    padding:10px;
-  }
+.footer-logo span {
+    color: var(--amarillo);
+}
 
-  .product-actions button{
-    font-size:12px;
-  }
+.footer-inner p {
+    color: #aaa;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+/* ================= TOAST ================= */
+
+.toast {
+    position: fixed;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #111;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 30px;
+    opacity: 0;
+    transition: .3s;
+    z-index: 3000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ================= BARRA MOBILE ================= */
+
+.mobile-nav {
+    display: none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 850px) {
+
+    .header-top {
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        order: 1;
+    }
+
+    .header-icons {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .search {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-box {
+        min-height: 330px;
+        padding: 28px;
+    }
+
+    .hero-circle {
+        right: -80px;
+        bottom: -70px;
+    }
+
+    .offer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 65px;
+        background: #111;
+        z-index: 2000;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -4px 15px rgba(0,0,0,.2);
+    }
+
+    .mobile-nav button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 11px;
+    }
+
+    .mobile-nav span {
+        display: block;
+        font-size: 21px;
+        margin-bottom: 3px;
+    }
+
+    footer {
+        padding-bottom: 90px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .header-top {
+        padding: 11px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .hero {
+        padding: 0 10px;
+    }
+
+    .hero-box {
+        padding: 25px;
+        border-radius: 20px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .section {
+        padding: 0 10px;
+    }
+
+    .products {
+        gap: 10px;
+    }
+
+    .product-img {
+        height: 145px;
+        font-size: 55px;
+    }
+
+    .price {
+        font-size: 18px;
+    }
 }
 </style>
 </head>
@@ -428,680 +599,543 @@ header{
 <body>
 
 <header>
-  <div class="top">
-    <div class="logo">🛒 Mercado97</div>
 
-    <div class="search">
-      <input id="searchInput" type="text" placeholder="Buscar productos..." oninput="searchProducts()">
-      <button onclick="searchProducts()">🔎</button>
+    <div class="header-top">
+
+        <div class="logo">
+            Mercado<span>97</span>
+        </div>
+
+        <div class="search">
+            <input id="searchInput"
+                   type="text"
+                   placeholder="¿Qué estás buscando?">
+            <button onclick="searchProducts()">🔎</button>
+        </div>
+
+        <div class="header-icons">
+
+            <button class="icon-btn" onclick="showMessage('Tu perfil estará disponible pronto')">
+                👤
+            </button>
+
+            <button class="icon-btn" onclick="showMessage('Carrito: ' + cart + ' productos')">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+
+        </div>
+
     </div>
 
-    <select class="lang" id="language" onchange="changeLanguage()">
-      <option value="es">🇪🇸 ES</option>
-      <option value="pt">🇧🇷 PT</option>
-      <option value="en">🇺🇸 EN</option>
-    </select>
-  </div>
+    <nav class="nav">
+        <div class="nav-inner">
+            <button onclick="scrollToSection('inicio')">Inicio</button>
+            <button onclick="scrollToSection('categorias')">Categorías</button>
+            <button onclick="scrollToSection('ofertas')">🔥 Ofertas</button>
+            <button onclick="scrollToSection('productos')">Productos</button>
+            <button onclick="showMessage('Área de vendedores próximamente')">Vender</button>
+        </div>
+    </nav>
 
-  <div class="nav">
-    <button onclick="showHome()">🏠 Inicio</button>
-    <button onclick="showCart()">🛒 <span id="cartNav">Carrito (0)</span></button>
-    <button onclick="showFavorites()">❤️ Favoritos</button>
-    <button onclick="showOrders()">📦 Pedidos</button>
-    <button onclick="showSeller()">🏪 Vender</button>
-    <button onclick="toggleDark()">🌙</button>
-  </div>
 </header>
 
-<main class="container">
 
-  <section class="hero">
-    <h1 id="heroTitle">Todo lo que buscas en un solo lugar</h1>
-    <p id="heroText">Compra, vende y descubre productos en Mercado97.</p>
-    <button onclick="document.getElementById('productsSection').scrollIntoView()">
-      🛍️ Comprar ahora
-    </button>
-  </section>
+<main id="inicio">
 
-  <section>
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-box">
+
+        <div class="hero-content">
+
+            <small>BIENVENIDO A MERCADO97</small>
+
+            <h1>
+                Compra más.<br>
+                <span>Paga menos.</span>
+            </h1>
+
+            <p>
+                Descubre productos, ofertas y oportunidades
+                increíbles en un solo lugar.
+            </p>
+
+            <button class="hero-button"
+                    onclick="scrollToSection('productos')">
+                Comprar ahora →
+            </button>
+
+        </div>
+
+        <div class="hero-circle"></div>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIAS -->
+
+<section class="section" id="categorias">
+
     <div class="section-title">
-      <h2 id="catTitle">Categorías</h2>
+        <h2>Explora categorías</h2>
+        <span>Ver todas →</span>
     </div>
 
     <div class="categories">
-      <div class="category" onclick="filterCategory('Todos')">
-        <span class="icon">🛍️</span>Todos
-      </div>
 
-      <div class="category" onclick="filterCategory('Electrónica')">
-        <span class="icon">📱</span>Electrónica
-      </div>
+        <div class="category">
+            <div class="category-icon">📱</div>
+            <p>Electrónica</p>
+        </div>
 
-      <div class="category" onclick="filterCategory('Hogar')">
-        <span class="icon">🏠</span>Hogar
-      </div>
+        <div class="category">
+            <div class="category-icon">👕</div>
+            <p>Moda</p>
+        </div>
 
-      <div class="category" onclick="filterCategory('Ropa')">
-        <span class="icon">👕</span>Ropa
-      </div>
+        <div class="category">
+            <div class="category-icon">🏠</div>
+            <p>Hogar</p>
+        </div>
 
-      <div class="category" onclick="filterCategory('Belleza')">
-        <span class="icon">💄</span>Belleza
-      </div>
+        <div class="category">
+            <div class="category-icon">💄</div>
+            <p>Belleza</p>
+        </div>
 
-      <div class="category" onclick="filterCategory('Deportes')">
-        <span class="icon">⚽</span>Deportes
-      </div>
+        <div class="category">
+            <div class="category-icon">🎮</div>
+            <p>Gaming</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">⚽</div>
+            <p>Deportes</p>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🚗</div>
+            <p>Automóvil</p>
+        </div>
+
     </div>
-  </section>
 
-  <section id="productsSection">
+</section>
+
+
+<!-- OFERTA -->
+
+<section class="section" id="ofertas">
+
+    <div class="offer">
+
+        <div>
+            <h2>🔥 Ofertas relámpago</h2>
+            <p>Descuentos especiales por tiempo limitado.</p>
+        </div>
+
+        <div class="timer">
+
+            <div class="time-box">
+                <strong id="hours">08</strong>
+                <small>Horas</small>
+            </div>
+
+            <div class="time-box">
+                <strong id="minutes">32</strong>
+                <small>Min</small>
+            </div>
+
+            <div class="time-box">
+                <strong id="seconds">45</strong>
+                <small>Seg</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRODUCTOS -->
+
+<section class="section" id="productos">
+
     <div class="section-title">
-      <h2 id="productsTitle">Productos</h2>
+        <h2>🔥 Productos destacados</h2>
+        <span>Ver más →</span>
     </div>
 
-    <div id="products" class="products"></div>
-  </section>
+    <div class="products">
+
+        <article class="product">
+
+            <div class="product-img">📱</div>
+
+            <span class="discount">-25%</span>
+
+            <button class="favorite"
+                    onclick="favorite(this)">
+                ♡
+            </button>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    Smartphone Pro 5G
+                </div>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <div class="old-price">
+                    R$ 2.499,00
+                </div>
+
+                <div class="price">
+                    R$ 1.899,00
+                </div>
+
+                <div class="shipping">
+                    ✓ Envío gratis
+                </div>
+
+                <button class="add-cart"
+                        onclick="addCart('Smartphone Pro 5G')">
+                    🛒 Agregar al carrito
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-img">🎧</div>
+
+            <span class="discount">-40%</span>
+
+            <button class="favorite"
+                    onclick="favorite(this)">
+                ♡
+            </button>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    Auriculares Wireless
+                </div>
+
+                <div class="stars">
+                    ★★★★☆
+                </div>
+
+                <div class="old-price">
+                    R$ 399,00
+                </div>
+
+                <div class="price">
+                    R$ 239,00
+                </div>
+
+                <div class="shipping">
+                    ✓ Envío gratis
+                </div>
+
+                <button class="add-cart"
+                        onclick="addCart('Auriculares Wireless')">
+                    🛒 Agregar al carrito
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-img">👟</div>
+
+            <span class="discount">-30%</span>
+
+            <button class="favorite"
+                    onclick="favorite(this)">
+                ♡
+            </button>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    Zapatillas deportivas
+                </div>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <div class="old-price">
+                    R$ 299,00
+                </div>
+
+                <div class="price">
+                    R$ 209,00
+                </div>
+
+                <div class="shipping">
+                    ✓ Envío gratis
+                </div>
+
+                <button class="add-cart"
+                        onclick="addCart('Zapatillas deportivas')">
+                    🛒 Agregar al carrito
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-img">⌚</div>
+
+            <span class="discount">-35%</span>
+
+            <button class="favorite"
+                    onclick="favorite(this)">
+                ♡
+            </button>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    Smartwatch Ultra
+                </div>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <div class="old-price">
+                    R$ 599,00
+                </div>
+
+                <div class="price">
+                    R$ 389,00
+                </div>
+
+                <div class="shipping">
+                    ✓ Envío gratis
+                </div>
+
+                <button class="add-cart"
+                        onclick="addCart('Smartwatch Ultra')">
+                    🛒 Agregar al carrito
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
 
 </main>
 
-<div class="bottom">
-  <div class="bottom-inner">
-    <button onclick="showHome()">
-      <span>🏠</span>Inicio
-    </button>
 
-    <button onclick="showFavorites()">
-      <span>❤️</span>Favoritos
-    </button>
+<footer>
 
-    <button onclick="showCart()">
-      <span>🛒</span><b id="cartBottom">0</b>
-    </button>
+    <div class="footer-inner">
 
-    <button onclick="showOrders()">
-      <span>📦</span>Pedidos
-    </button>
+        <div class="footer-logo">
+            Mercado<span>97</span>
+        </div>
 
-    <button onclick="showSeller()">
-      <span>🏪</span>Vender
-    </button>
-  </div>
-</div>
+        <p>
+            Tu nuevo mercado digital.
+        </p>
 
-<div id="modalBg" class="modal-bg">
-  <div class="modal">
+        <p>
+            © 2026 Mercado97 — Todos los derechos reservados.
+        </p>
 
-    <div class="modal-header">
-      <h2 id="modalTitle">Mercado97</h2>
-      <button class="close" onclick="closeModal()">✕</button>
     </div>
 
-    <div id="modalContent"></div>
+</footer>
 
-  </div>
-</div>
+
+<!-- MOBILE NAV -->
+
+<nav class="mobile-nav">
+
+    <button onclick="scrollToSection('inicio')">
+        <span>⌂</span>
+        Inicio
+    </button>
+
+    <button onclick="scrollToSection('categorias')">
+        <span>☰</span>
+        Categorías
+    </button>
+
+    <button onclick="scrollToSection('ofertas')">
+        <span>🔥</span>
+        Ofertas
+    </button>
+
+    <button onclick="showMessage('Carrito: ' + cart + ' productos')">
+        <span>🛒</span>
+        Carrito
+    </button>
+
+    <button onclick="showMessage('Tu perfil estará disponible pronto')">
+        <span>👤</span>
+        Perfil
+    </button>
+
+</nav>
+
+
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-const products = [
-  {
-    id:1,
-    name:"Teléfono inteligente",
-    category:"Electrónica",
-    price:299,
-    emoji:"📱",
-    description:"Teléfono moderno para uso diario."
-  },
-  {
-    id:2,
-    name:"Auriculares inalámbricos",
-    category:"Electrónica",
-    price:39,
-    emoji:"🎧",
-    description:"Auriculares Bluetooth."
-  },
-  {
-    id:3,
-    name:"Lámpara para hogar",
-    category:"Hogar",
-    price:25,
-    emoji:"💡",
-    description:"Lámpara moderna para tu hogar."
-  },
-  {
-    id:4,
-    name:"Camiseta",
-    category:"Ropa",
-    price:19,
-    emoji:"👕",
-    description:"Camiseta cómoda para todos los días."
-  },
-  {
-    id:5,
-    name:"Zapatillas deportivas",
-    category:"Deportes",
-    price:55,
-    emoji:"👟",
-    description:"Zapatillas para entrenamiento."
-  },
-  {
-    id:6,
-    name:"Set de belleza",
-    category:"Belleza",
-    price:35,
-    emoji:"💄",
-    description:"Productos de belleza."
-  },
-  {
-    id:7,
-    name:"Mochila",
-    category:"Ropa",
-    price:29,
-    emoji:"🎒",
-    description:"Mochila resistente."
-  },
-  {
-    id:8,
-    name:"Cafetera",
-    category:"Hogar",
-    price:49,
-    emoji:"☕",
-    description:"Cafetera para el hogar."
-  }
-];
+let cart = 0;
 
-let cart = JSON.parse(localStorage.getItem("mercado97_cart")) || [];
-let favorites = JSON.parse(localStorage.getItem("mercado97_favorites")) || [];
-let orders = JSON.parse(localStorage.getItem("mercado97_orders")) || [];
 
-let currentProducts = [...products];
+/* ================= CARRITO ================= */
 
-const translations = {
-  es:{
-    search:"Buscar productos...",
-    heroTitle:"Todo lo que buscas en un solo lugar",
-    heroText:"Compra, vende y descubre productos en Mercado97.",
-    categories:"Categorías",
-    products:"Productos"
-  },
+function addCart(product) {
 
-  pt:{
-    search:"Buscar produtos...",
-    heroTitle:"Tudo o que você procura em um só lugar",
-    heroText:"Compre, venda e descubra produtos no Mercado97.",
-    categories:"Categorias",
-    products:"Produtos"
-  },
+    cart++;
 
-  en:{
-    search:"Search products...",
-    heroTitle:"Everything you are looking for in one place",
-    heroText:"Buy, sell and discover products on Mercado97.",
-    categories:"Categories",
-    products:"Products"
-  }
-};
+    document.getElementById("cartCount").textContent = cart;
 
-function saveData(){
-  localStorage.setItem("mercado97_cart",JSON.stringify(cart));
-  localStorage.setItem("mercado97_favorites",JSON.stringify(favorites));
-  localStorage.setItem("mercado97_orders",JSON.stringify(orders));
-  updateCartCount();
+    showMessage(product + " agregado al carrito 🛒");
 }
 
-function updateCartCount(){
-  let count = cart.reduce((sum,item)=>sum+item.qty,0);
 
-  document.getElementById("cartNav").textContent =
-    "Carrito (" + count + ")";
+/* ================= FAVORITOS ================= */
 
-  document.getElementById("cartBottom").textContent = count;
+function favorite(button) {
+
+    if (button.textContent === "♡") {
+
+        button.textContent = "♥";
+        button.style.color = "#e53935";
+
+        showMessage("Agregado a favoritos ❤️");
+
+    } else {
+
+        button.textContent = "♡";
+        button.style.color = "#111";
+
+        showMessage("Eliminado de favoritos");
+
+    }
+
 }
 
-function renderProducts(list=currentProducts){
 
-  const box=document.getElementById("products");
+/* ================= MENSAJE ================= */
 
-  if(list.length===0){
-    box.innerHTML='<div class="empty">No encontramos productos.</div>';
-    return;
-  }
+function showMessage(message) {
 
-  box.innerHTML=list.map(p=>{
+    const toast = document.getElementById("toast");
 
-    const fav=favorites.includes(p.id);
+    toast.textContent = message;
 
-    return `
-      <div class="product">
+    toast.classList.add("show");
 
-        <button class="favorite" onclick="toggleFavorite(${p.id})">
-          ${fav ? "❤️":"♡"}
-        </button>
+    setTimeout(() => {
 
-        <div class="product-img">${p.emoji}</div>
+        toast.classList.remove("show");
 
-        <div class="product-info">
-          <small>${p.category}</small>
-          <h3>${p.name}</h3>
-          <div class="price">$${p.price.toFixed(2)}</div>
-          <small>${p.description}</small>
-
-          <div class="product-actions">
-            <button onclick="viewProduct(${p.id})">Ver</button>
-            <button onclick="addToCart(${p.id})">🛒+</button>
-          </div>
-        </div>
-
-      </div>
-    `;
-  }).join("");
+    }, 2200);
 }
 
-function addToCart(id){
 
-  const product=products.find(p=>p.id===id);
+/* ================= SCROLL ================= */
 
-  const existing=cart.find(item=>item.id===id);
+function scrollToSection(id) {
 
-  if(existing){
-    existing.qty++;
-  }else{
-    cart.push({
-      id:id,
-      qty:1
-    });
-  }
-
-  saveData();
-
-  alert("Producto agregado al carrito.");
-}
-
-function toggleFavorite(id){
-
-  if(favorites.includes(id)){
-    favorites=favorites.filter(x=>x!==id);
-  }else{
-    favorites.push(id);
-  }
-
-  saveData();
-  renderProducts(currentProducts);
-}
-
-function showFavorites(){
-
-  const list=products.filter(p=>favorites.includes(p.id));
-
-  openModal(
-    "❤️ Favoritos",
-    list.length
-    ? `<div class="products">${list.map(p=>`
-        <div class="product">
-          <div class="product-img">${p.emoji}</div>
-          <div class="product-info">
-            <h3>${p.name}</h3>
-            <div class="price">$${p.price.toFixed(2)}</div>
-            <button class="primary" onclick="addToCart(${p.id})">
-              🛒 Agregar
-            </button>
-          </div>
-        </div>
-      `).join("")}</div>`
-    : `<div class="empty">Todavía no tienes productos favoritos.</div>`
-  );
-}
-
-function showCart(){
-
-  if(cart.length===0){
-    openModal(
-      "🛒 Carrito",
-      `<div class="empty">
-        <h3>Tu carrito está vacío</h3>
-        <p>Agrega productos para comenzar.</p>
-      </div>`
-    );
-    return;
-  }
-
-  let total=0;
-
-  let html=cart.map(item=>{
-
-    const p=products.find(x=>x.id===item.id);
-
-    if(!p)return "";
-
-    total+=p.price*item.qty;
-
-    return `
-      <div class="cart-item">
-        <div class="emoji">${p.emoji}</div>
-
-        <div>
-          <b>${p.name}</b>
-          <div>$${p.price.toFixed(2)}</div>
-        </div>
-
-        <div class="qty">
-          <button onclick="changeQty(${p.id},-1)">−</button>
-          <b>${item.qty}</b>
-          <button onclick="changeQty(${p.id},1)">+</button>
-        </div>
-      </div>
-    `;
-  }).join("");
-
-  html+=`
-    <div class="total">
-      Total: $${total.toFixed(2)}
-    </div>
-
-    <button class="primary" onclick="checkout()">
-      💳 Continuar con la compra
-    </button>
-  `;
-
-  openModal("🛒 Carrito",html);
-}
-
-function changeQty(id,amount){
-
-  const item=cart.find(x=>x.id===id);
-
-  if(!item)return;
-
-  item.qty+=amount;
-
-  if(item.qty<=0){
-    cart=cart.filter(x=>x.id!==id);
-  }
-
-  saveData();
-  showCart();
-}
-
-function checkout(){
-
-  if(cart.length===0)return;
-
-  const newOrder={
-    id:Date.now(),
-    date:new Date().toLocaleString(),
-    items:[...cart],
-    status:"Pendiente"
-  };
-
-  orders.push(newOrder);
-  cart=[];
-
-  saveData();
-
-  openModal(
-    "✅ Pedido recibido",
-    `
-      <div class="notice">
-        Tu pedido fue registrado correctamente.
-      </div>
-
-      <p>
-        En una siguiente etapa conectaremos Mercado97
-        con pagos reales, dirección de entrega y seguimiento.
-      </p>
-
-      <button class="primary" onclick="closeModal()">
-        Continuar
-      </button>
-    `
-  );
-}
-
-function showOrders(){
-
-  if(orders.length===0){
-    openModal(
-      "📦 Mis pedidos",
-      `<div class="empty">
-        Todavía no tienes pedidos.
-      </div>`
-    );
-    return;
-  }
-
-  const html=orders.map(o=>{
-
-    let total=0;
-
-    o.items.forEach(item=>{
-      const p=products.find(x=>x.id===item.id);
-      if(p)total+=p.price*item.qty;
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth"
     });
 
-    return `
-      <div class="notice">
-        <b>Pedido #${o.id}</b>
-        <br>
-        Fecha: ${o.date}
-        <br>
-        Estado: ${o.status}
-        <br>
-        Total: $${total.toFixed(2)}
-      </div>
-    `;
-
-  }).join("");
-
-  openModal("📦 Mis pedidos",html);
 }
 
-function showSeller(){
 
-  openModal(
-    "🏪 Vender en Mercado97",
-    `
-      <p>
-        Publica tus productos para comenzar a vender.
-      </p>
+/* ================= BUSCADOR ================= */
 
-      <div class="form-group">
-        <label>Nombre del producto</label>
-        <input id="sellerName" placeholder="Ejemplo: Teléfono">
-      </div>
+function searchProducts() {
 
-      <div class="form-group">
-        <label>Precio</label>
-        <input id="sellerPrice" type="number" placeholder="0.00">
-      </div>
+    const text =
+        document.getElementById("searchInput").value.trim();
 
-      <div class="form-group">
-        <label>Categoría</label>
-        <select id="sellerCategory">
-          <option>Electrónica</option>
-          <option>Hogar</option>
-          <option>Ropa</option>
-          <option>Belleza</option>
-          <option>Deportes</option>
-        </select>
-      </div>
+    if (text === "") {
 
-      <div class="form-group">
-        <label>Descripción</label>
-        <textarea id="sellerDescription" rows="4"></textarea>
-      </div>
+        showMessage("Escribe algo para buscar 🔎");
+        return;
 
-      <button class="primary" onclick="publishProduct()">
-        ➕ Publicar producto
-      </button>
-    `
-  );
+    }
+
+    showMessage("Buscando: " + text);
+
 }
 
-function publishProduct(){
 
-  const name=document.getElementById("sellerName").value.trim();
-  const price=parseFloat(document.getElementById("sellerPrice").value);
-  const category=document.getElementById("sellerCategory").value;
-  const description=document.getElementById("sellerDescription").value.trim();
+/* ================= CONTADOR ================= */
 
-  if(!name || !price){
-    alert("Completa el nombre y el precio.");
-    return;
-  }
+let seconds = 45;
+let minutes = 32;
+let hours = 8;
 
-  products.push({
-    id:Date.now(),
-    name:name,
-    price:price,
-    category:category,
-    description:description || "Producto publicado en Mercado97.",
-    emoji:"📦"
-  });
+setInterval(() => {
 
-  currentProducts=[...products];
+    seconds--;
 
-  closeModal();
-  renderProducts();
-  alert("Producto publicado correctamente.");
-}
+    if (seconds < 0) {
 
-function viewProduct(id){
+        seconds = 59;
+        minutes--;
 
-  const p=products.find(x=>x.id===id);
+    }
 
-  if(!p)return;
+    if (minutes < 0) {
 
-  openModal(
-    p.name,
-    `
-      <div style="text-align:center;font-size:90px">
-        ${p.emoji}
-      </div>
+        minutes = 59;
+        hours--;
 
-      <h2>${p.name}</h2>
+    }
 
-      <p>${p.description}</p>
+    if (hours < 0) {
 
-      <div class="price">$${p.price.toFixed(2)}</div>
+        hours = 23;
 
-      <p>Categoría: ${p.category}</p>
+    }
 
-      <button class="primary" onclick="addToCart(${p.id})">
-        🛒 Agregar al carrito
-      </button>
-    `
-  );
-}
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
 
-function searchProducts(){
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
 
-  const text=document.getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
 
-  currentProducts=products.filter(p=>
-    p.name.toLowerCase().includes(text) ||
-    p.category.toLowerCase().includes(text) ||
-    p.description.toLowerCase().includes(text)
-  );
-
-  renderProducts(currentProducts);
-}
-
-function filterCategory(category){
-
-  if(category==="Todos"){
-    currentProducts=[...products];
-  }else{
-    currentProducts=products.filter(p=>p.category===category);
-  }
-
-  renderProducts(currentProducts);
-
-  document.getElementById("productsSection")
-    .scrollIntoView({behavior:"smooth"});
-}
-
-function showHome(){
-
-  closeModal();
-
-  currentProducts=[...products];
-
-  document.getElementById("searchInput").value="";
-
-  renderProducts();
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
-function toggleDark(){
-
-  document.body.classList.toggle("dark");
-
-  localStorage.setItem(
-    "mercado97_dark",
-    document.body.classList.contains("dark")
-  );
-}
-
-function openModal(title,content){
-
-  document.getElementById("modalTitle").textContent=title;
-  document.getElementById("modalContent").innerHTML=content;
-  document.getElementById("modalBg").style.display="block";
-}
-
-function closeModal(){
-
-  document.getElementById("modalBg").style.display="none";
-}
-
-function changeLanguage(){
-
-  const lang=document.getElementById("language").value;
-  const t=translations[lang];
-
-  document.getElementById("searchInput").placeholder=t.search;
-  document.getElementById("heroTitle").textContent=t.heroTitle;
-  document.getElementById("heroText").textContent=t.heroText;
-  document.getElementById("catTitle").textContent=t.categories;
-  document.getElementById("productsTitle").textContent=t.products;
-
-  localStorage.setItem("mercado97_language",lang);
-}
-
-function loadSettings(){
-
-  const dark=localStorage.getItem("mercado97_dark");
-
-  if(dark==="true"){
-    document.body.classList.add("dark");
-  }
-
-  const lang=localStorage.getItem("mercado97_language");
-
-  if(lang){
-    document.getElementById("language").value=lang;
-    changeLanguage();
-  }
-}
-
-document.getElementById("modalBg").addEventListener("click",function(e){
-
-  if(e.target===this){
-    closeModal();
-  }
-
-});
-
-renderProducts();
-updateCartCount();
-loadSettings();
+}, 1000);
 
 </script>
 
