@@ -6,591 +6,827 @@
 <title>Mercado97</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-:root {
-    --negro: #111111;
-    --negro2: #1c1c1c;
-    --amarillo: #ffd600;
-    --rojo: #e53935;
-    --blanco: #ffffff;
-    --gris: #f4f4f4;
-    --texto: #222222;
+:root{
+    --black:#080808;
+    --dark:#111111;
+    --card:#181818;
+    --yellow:#ffd000;
+    --red:#ef3038;
+    --white:#ffffff;
+    --gray:#a7a7a7;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--gris);
-    color: var(--texto);
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--black);
+    color:white;
 }
 
-/* ================= HEADER ================= */
+/* =========================
+   PANTALLAS
+========================= */
 
-header {
-    background: var(--negro);
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 3px 15px rgba(0,0,0,.25);
+.screen{
+    min-height:100vh;
+    display:none;
 }
 
-.header-top {
-    max-width: 1200px;
-    margin: auto;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
+.screen.active{
+    display:block;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: 900;
-    color: white;
-    white-space: nowrap;
-}
+/* =========================
+   SPLASH
+========================= */
 
-.logo span {
-    color: var(--amarillo);
-}
-
-.search {
-    flex: 1;
-    display: flex;
-    background: white;
-    border-radius: 30px;
-    overflow: hidden;
-    height: 44px;
-}
-
-.search input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 0 18px;
-    font-size: 15px;
-}
-
-.search button {
-    width: 52px;
-    border: none;
-    background: var(--amarillo);
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.header-icons {
-    display: flex;
-    gap: 10px;
-}
-
-.icon-btn {
-    width: 42px;
-    height: 42px;
-    border: none;
-    border-radius: 50%;
-    background: var(--negro2);
-    color: white;
-    font-size: 19px;
-    cursor: pointer;
-    position: relative;
-}
-
-.cart-count {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    background: var(--rojo);
-    color: white;
-    width: 19px;
-    height: 19px;
-    border-radius: 50%;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ================= MENU ================= */
-
-.nav {
-    border-top: 1px solid #333;
-}
-
-.nav-inner {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    gap: 24px;
-    padding: 10px 18px;
-    overflow-x: auto;
-}
-
-.nav button {
-    background: none;
-    border: none;
-    color: white;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.nav button:hover {
-    color: var(--amarillo);
-}
-
-/* ================= HERO ================= */
-
-.hero {
-    max-width: 1200px;
-    margin: 18px auto;
-    padding: 0 18px;
-}
-
-.hero-box {
-    min-height: 310px;
-    border-radius: 24px;
-    overflow: hidden;
+#splash{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
     background:
-        radial-gradient(circle at 85% 20%, #ffd600 0, transparent 25%),
-        linear-gradient(120deg, #111111, #292929);
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 38px;
-    position: relative;
+        radial-gradient(circle at 50% 45%,rgba(255,208,0,.18),transparent 30%),
+        #050505;
+    position:relative;
+    overflow:hidden;
 }
 
-.hero-content {
-    max-width: 560px;
-    z-index: 2;
+.splash-content{
+    position:relative;
+    z-index:2;
 }
 
-.hero small {
-    color: var(--amarillo);
-    font-weight: bold;
-    font-size: 15px;
+.logo-big{
+    font-size:64px;
+    font-weight:900;
+    letter-spacing:-4px;
 }
 
-.hero h1 {
-    font-size: clamp(32px, 6vw, 58px);
-    line-height: 1;
-    margin: 12px 0;
+.logo-big span{
+    color:var(--yellow);
 }
 
-.hero h1 span {
-    color: var(--amarillo);
+.logo-sub{
+    margin-top:10px;
+    font-size:18px;
+    color:#ccc;
 }
 
-.hero p {
-    font-size: 17px;
-    line-height: 1.5;
-    color: #ddd;
+.logo-line{
+    width:75px;
+    height:5px;
+    background:var(--yellow);
+    border-radius:10px;
+    margin:35px auto 0;
+    animation:loading 1.7s infinite;
 }
 
-.hero-button {
-    margin-top: 22px;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 30px;
-    background: var(--amarillo);
-    color: #111;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 15px;
+.splash-orb{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    border:1px solid rgba(255,208,0,.15);
+    box-shadow:0 0 100px rgba(255,208,0,.15);
 }
 
-.hero-circle {
-    position: absolute;
-    right: 70px;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: var(--amarillo);
-    opacity: .15;
+@keyframes loading{
+    0%{width:20px}
+    50%{width:100px}
+    100%{width:20px}
 }
 
-/* ================= SECCIONES ================= */
+/* =========================
+   REGISTRO
+========================= */
 
-.section {
-    max-width: 1200px;
-    margin: 28px auto;
-    padding: 0 18px;
+.auth{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(255,208,0,.12),transparent 25%),
+        #080808;
 }
 
-.section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
+.auth-box{
+    width:100%;
+    max-width:480px;
 }
 
-.section-title h2 {
-    font-size: 23px;
+.auth-logo{
+    text-align:center;
+    font-size:34px;
+    font-weight:900;
+    margin-bottom:25px;
 }
 
-.section-title span {
-    color: var(--rojo);
-    font-size: 14px;
-    font-weight: bold;
+.auth-logo span{
+    color:var(--yellow);
 }
 
-/* ================= CATEGORIAS ================= */
-
-.categories {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    padding-bottom: 8px;
+.auth-card{
+    background:linear-gradient(145deg,#181818,#0e0e0e);
+    border:1px solid #292929;
+    border-radius:28px;
+    padding:28px;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
 }
 
-.category {
-    min-width: 105px;
-    background: white;
-    border-radius: 18px;
-    padding: 16px 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: .25s;
-    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+.auth-card h1{
+    font-size:29px;
+    margin-bottom:8px;
 }
 
-.category:hover {
-    transform: translateY(-5px);
+.auth-card .subtitle{
+    color:#aaa;
+    margin-bottom:24px;
+    line-height:1.5;
 }
 
-.category-icon {
-    width: 55px;
-    height: 55px;
-    margin: auto;
-    border-radius: 50%;
-    background: #111;
-    color: var(--amarillo);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 26px;
+.field{
+    margin-bottom:14px;
 }
 
-.category p {
-    margin-top: 9px;
-    font-size: 13px;
-    font-weight: bold;
+.field label{
+    display:block;
+    font-size:12px;
+    color:#aaa;
+    margin-bottom:7px;
 }
 
-/* ================= PRODUCTOS ================= */
-
-.products {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+.input-wrap{
+    display:flex;
+    align-items:center;
+    background:#121212;
+    border:1px solid #333;
+    border-radius:14px;
+    height:52px;
+    overflow:hidden;
 }
 
-.product {
-    background: white;
-    border-radius: 18px;
-    overflow: hidden;
-    position: relative;
-    transition: .25s;
-    box-shadow: 0 4px 14px rgba(0,0,0,.07);
+.input-wrap:focus-within{
+    border-color:var(--yellow);
 }
 
-.product:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+.input-icon{
+    width:45px;
+    text-align:center;
+    color:var(--yellow);
+    font-size:18px;
 }
 
-.product-img {
-    height: 190px;
-    background: linear-gradient(135deg, #eeeeee, #d8d8d8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
+.input-wrap input{
+    flex:1;
+    height:100%;
+    background:none;
+    border:0;
+    outline:0;
+    color:white;
+    font-size:15px;
+    padding-right:12px;
 }
 
-.discount {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: var(--rojo);
-    color: white;
-    padding: 5px 8px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: bold;
+.password-toggle{
+    border:0;
+    background:none;
+    color:#aaa;
+    padding:12px;
+    cursor:pointer;
 }
 
-.favorite {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 34px;
-    height: 34px;
-    border: none;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    font-size: 17px;
+.terms{
+    display:flex;
+    gap:8px;
+    margin:15px 0;
+    font-size:11px;
+    color:#aaa;
+    line-height:1.4;
 }
 
-.product-info {
-    padding: 13px;
+.terms input{
+    accent-color:var(--yellow);
 }
 
-.product-name {
-    font-weight: bold;
-    font-size: 14px;
-    min-height: 35px;
+.terms span{
+    color:var(--yellow);
 }
 
-.stars {
-    color: #ffb300;
-    font-size: 13px;
-    margin: 7px 0;
+.main-button{
+    width:100%;
+    height:53px;
+    border:0;
+    border-radius:15px;
+    background:var(--yellow);
+    color:#080808;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.old-price {
-    color: #999;
-    text-decoration: line-through;
-    font-size: 12px;
+.main-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(255,208,0,.2);
 }
 
-.price {
-    font-size: 21px;
-    font-weight: 900;
-    margin: 3px 0;
+.divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:22px 0;
+    color:#777;
+    font-size:12px;
 }
 
-.shipping {
-    color: #159447;
-    font-size: 12px;
-    margin-bottom: 10px;
+.divider div{
+    flex:1;
+    height:1px;
+    background:#333;
 }
 
-.add-cart {
-    width: 100%;
-    border: none;
-    background: var(--negro);
-    color: white;
-    padding: 11px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
+.socials{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.add-cart:hover {
-    background: var(--rojo);
+.social{
+    height:48px;
+    border-radius:13px;
+    background:#fff;
+    border:0;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
 }
 
-/* ================= OFERTA ================= */
-
-.offer {
-    background: var(--rojo);
-    color: white;
-    border-radius: 22px;
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+.login{
+    text-align:center;
+    margin-top:22px;
+    font-size:13px;
+    color:#aaa;
 }
 
-.offer h2 {
-    font-size: 28px;
+.login button{
+    border:0;
+    background:none;
+    color:var(--yellow);
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.timer {
-    display: flex;
-    gap: 8px;
+.language{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:18px;
 }
 
-.time-box {
-    background: rgba(0,0,0,.25);
-    border-radius: 10px;
-    padding: 10px;
-    min-width: 52px;
-    text-align: center;
+.language button{
+    background:#171717;
+    border:1px solid #333;
+    color:#ccc;
+    border-radius:20px;
+    padding:7px 12px;
+    cursor:pointer;
 }
 
-.time-box strong {
-    display: block;
-    font-size: 20px;
+.language button.selected{
+    border-color:var(--yellow);
+    color:var(--yellow);
 }
 
-/* ================= FOOTER ================= */
+/* =========================
+   HEADER HOME
+========================= */
 
-footer {
-    margin-top: 40px;
-    background: var(--negro);
-    color: white;
-    padding: 35px 18px;
+.home{
+    padding-bottom:90px;
 }
 
-.footer-inner {
-    max-width: 1200px;
-    margin: auto;
-    text-align: center;
+.top-header{
+    background:#080808;
+    padding:18px 18px 12px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    border-bottom:1px solid #222;
 }
 
-.footer-logo {
-    font-size: 25px;
-    font-weight: bold;
+.top-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
 }
 
-.footer-logo span {
-    color: var(--amarillo);
+.home-logo{
+    font-size:25px;
+    font-weight:900;
 }
 
-.footer-inner p {
-    color: #aaa;
-    margin-top: 10px;
-    font-size: 13px;
+.home-logo span{
+    color:var(--yellow);
 }
 
-/* ================= TOAST ================= */
-
-.toast {
-    position: fixed;
-    bottom: 85px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: #111;
-    color: white;
-    padding: 14px 20px;
-    border-radius: 30px;
-    opacity: 0;
-    transition: .3s;
-    z-index: 3000;
+.header-actions{
+    display:flex;
+    gap:8px;
 }
 
-.toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+.circle-button{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid #292929;
+    background:#161616;
+    color:white;
+    cursor:pointer;
+    position:relative;
+    font-size:18px;
 }
 
-/* ================= BARRA MOBILE ================= */
-
-.mobile-nav {
-    display: none;
+.badge{
+    position:absolute;
+    right:-2px;
+    top:-3px;
+    width:18px;
+    height:18px;
+    background:var(--red);
+    border-radius:50%;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-/* ================= RESPONSIVE ================= */
+/* SEARCH */
 
-@media (max-width: 850px) {
+.search-box{
+    height:50px;
+    margin-top:15px;
+    display:flex;
+    background:#191919;
+    border:1px solid #343434;
+    border-radius:15px;
+    overflow:hidden;
+}
 
-    .header-top {
-        flex-wrap: wrap;
+.search-box input{
+    flex:1;
+    background:none;
+    border:0;
+    outline:0;
+    color:white;
+    padding:0 16px;
+    font-size:14px;
+}
+
+.search-box button{
+    width:58px;
+    border:0;
+    background:var(--yellow);
+    font-size:20px;
+}
+
+/* MENU */
+
+.menu{
+    display:flex;
+    gap:27px;
+    margin-top:15px;
+    overflow-x:auto;
+    padding-bottom:3px;
+}
+
+.menu button{
+    border:0;
+    background:none;
+    color:#aaa;
+    white-space:nowrap;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.menu button:first-child{
+    color:var(--yellow);
+    font-weight:bold;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:18px;
+}
+
+.greeting{
+    margin-bottom:15px;
+}
+
+.greeting h2{
+    font-size:24px;
+}
+
+.greeting p{
+    color:#999;
+    margin-top:4px;
+    font-size:13px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:245px;
+    border-radius:24px;
+    overflow:hidden;
+    position:relative;
+    padding:25px;
+    background:
+        radial-gradient(circle at 80% 50%,rgba(255,208,0,.28),transparent 28%),
+        linear-gradient(135deg,#171717,#080808);
+    border:1px solid #292929;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    right:-50px;
+    top:-50px;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:rgba(255,208,0,.08);
+    box-shadow:0 0 80px rgba(255,208,0,.15);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:55%;
+}
+
+.hero-tag{
+    display:inline-block;
+    background:var(--red);
+    padding:6px 10px;
+    border-radius:7px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.hero h1{
+    margin-top:15px;
+    font-size:36px;
+    line-height:1;
+}
+
+.hero h1 span{
+    color:var(--yellow);
+}
+
+.hero p{
+    color:#ccc;
+    margin-top:12px;
+    line-height:1.4;
+    font-size:13px;
+}
+
+.hero button{
+    margin-top:18px;
+    border:0;
+    background:var(--yellow);
+    color:#080808;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* BENEFICIOS */
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:14px;
+}
+
+.benefit{
+    background:#151515;
+    border:1px solid #242424;
+    border-radius:15px;
+    padding:13px 8px;
+    text-align:center;
+}
+
+.benefit-icon{
+    color:var(--yellow);
+    font-size:21px;
+}
+
+.benefit strong{
+    display:block;
+    font-size:11px;
+    margin-top:5px;
+}
+
+.benefit small{
+    color:#777;
+    font-size:9px;
+}
+
+/* TITULOS */
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:28px 0 14px;
+}
+
+.section-title h2{
+    font-size:20px;
+}
+
+.section-title button{
+    border:0;
+    background:none;
+    color:var(--yellow);
+    font-weight:bold;
+}
+
+/* CATEGORIAS */
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.category{
+    min-width:82px;
+    background:#171717;
+    border:1px solid #272727;
+    border-radius:15px;
+    padding:12px 6px;
+    text-align:center;
+}
+
+.category-icon{
+    width:48px;
+    height:48px;
+    border-radius:13px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#222;
+    font-size:23px;
+}
+
+.category p{
+    margin-top:7px;
+    font-size:10px;
+}
+
+/* OFERTAS */
+
+.flash-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.timer{
+    display:flex;
+    gap:3px;
+}
+
+.timer span{
+    background:var(--red);
+    padding:4px 5px;
+    border-radius:5px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+/* PRODUCTOS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.product{
+    background:#151515;
+    border:1px solid #292929;
+    border-radius:17px;
+    overflow:hidden;
+    position:relative;
+}
+
+.product-img{
+    height:155px;
+    background:#eee;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:60px;
+}
+
+.discount{
+    position:absolute;
+    top:8px;
+    left:8px;
+    background:var(--red);
+    color:white;
+    padding:5px 7px;
+    border-radius:6px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.heart{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:30px;
+    height:30px;
+    border:0;
+    border-radius:50%;
+    background:white;
+    cursor:pointer;
+}
+
+.product-info{
+    padding:10px;
+}
+
+.product-name{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.stars{
+    color:var(--yellow);
+    font-size:11px;
+    margin-top:6px;
+}
+
+.sales{
+    color:#888;
+    font-size:9px;
+}
+
+.old{
+    color:#777;
+    text-decoration:line-through;
+    font-size:10px;
+    margin-top:6px;
+}
+
+.price{
+    font-size:18px;
+    font-weight:900;
+    margin-top:2px;
+}
+
+.cart-button{
+    width:100%;
+    height:35px;
+    border:0;
+    border-radius:9px;
+    background:var(--yellow);
+    margin-top:9px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:70px;
+    background:rgba(12,12,12,.97);
+    border-top:1px solid #292929;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:200;
+}
+
+.bottom-nav button{
+    background:none;
+    border:0;
+    color:#888;
+    font-size:10px;
+    cursor:pointer;
+}
+
+.bottom-nav button span{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.bottom-nav button.active{
+    color:var(--yellow);
+}
+
+.shop-button{
+    width:53px;
+    height:53px;
+    border-radius:50%;
+    background:var(--yellow)!important;
+    color:#111!important;
+    font-size:24px!important;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:85px;
+    transform:translateX(-50%) translateY(30px);
+    background:#222;
+    border:1px solid #444;
+    padding:12px 18px;
+    border-radius:25px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:500;
+    white-space:nowrap;
+    font-size:13px;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+    .benefits{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .logo {
-        order: 1;
+    .products{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .header-icons {
-        order: 2;
-        margin-left: auto;
+    .hero-content{
+        max-width:75%;
     }
 
-    .search {
-        order: 3;
-        flex-basis: 100%;
+    .hero h1{
+        font-size:31px;
     }
 
-    .products {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hero-box {
-        min-height: 330px;
-        padding: 28px;
-    }
-
-    .hero-circle {
-        right: -80px;
-        bottom: -70px;
-    }
-
-    .offer {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .mobile-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 65px;
-        background: #111;
-        z-index: 2000;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 -4px 15px rgba(0,0,0,.2);
-    }
-
-    .mobile-nav button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 11px;
-    }
-
-    .mobile-nav span {
-        display: block;
-        font-size: 21px;
-        margin-bottom: 3px;
-    }
-
-    footer {
-        padding-bottom: 90px;
+    .product-img{
+        height:145px;
     }
 }
 
-@media (max-width: 430px) {
+@media(min-width:900px){
 
-    .header-top {
-        padding: 11px;
+    .home .container{
+        padding-top:30px;
     }
 
-    .logo {
-        font-size: 22px;
+    .hero{
+        min-height:320px;
+        padding:40px;
     }
 
-    .hero {
-        padding: 0 10px;
-    }
-
-    .hero-box {
-        padding: 25px;
-        border-radius: 20px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    .section {
-        padding: 0 10px;
-    }
-
-    .products {
-        gap: 10px;
-    }
-
-    .product-img {
-        height: 145px;
-        font-size: 55px;
-    }
-
-    .price {
-        font-size: 18px;
+    .hero h1{
+        font-size:52px;
     }
 }
 </style>
@@ -598,463 +834,1206 @@ footer {
 
 <body>
 
-<header>
+<!-- =========================================
+     1. PANTALLA DE LOGO
+========================================= -->
 
-    <div class="header-top">
+<section id="splash" class="screen active">
 
-        <div class="logo">
+    <div class="splash-orb"></div>
+
+    <div class="splash-content">
+
+        <div class="logo-big">
             Mercado<span>97</span>
         </div>
 
-        <div class="search">
-            <input id="searchInput"
-                   type="text"
-                   placeholder="¿Qué estás buscando?">
-            <button onclick="searchProducts()">🔎</button>
+        <div class="logo-sub">
+            Tu nuevo mercado digital
         </div>
 
-        <div class="header-icons">
+        <div class="logo-line"></div>
 
-            <button class="icon-btn" onclick="showMessage('Tu perfil estará disponible pronto')">
-                👤
-            </button>
+    </div>
 
-            <button class="icon-btn" onclick="showMessage('Carrito: ' + cart + ' productos')">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
+</section>
+
+
+<!-- =========================================
+     2. REGISTRO
+========================================= -->
+
+<section id="register" class="screen">
+
+    <div class="auth">
+
+        <div class="auth-box">
+
+            <div class="auth-logo">
+                Mercado<span>97</span>
+            </div>
+
+            <div class="auth-card">
+
+                <h1>Bienvenido a Mercado97</h1>
+
+                <p class="subtitle">
+                    Crea tu cuenta y comienza a disfrutar
+                    de las mejores ofertas.
+                </p>
+
+                <div class="field">
+
+                    <label>Nombre completo</label>
+
+                    <div class="input-wrap">
+                        <div class="input-icon">👤</div>
+
+                        <input
+                            id="name"
+                            type="text"
+                            placeholder="Tu nombre"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Correo electrónico</label>
+
+                    <div class="input-wrap">
+
+                        <div class="input-icon">✉</div>
+
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="correo@ejemplo.com"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Número de teléfono</label>
+
+                    <div class="input-wrap">
+
+                        <div class="input-icon">📱</div>
+
+                        <input
+                            id="phone"
+                            type="tel"
+                            placeholder="+55 00 00000-0000"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Contraseña</label>
+
+                    <div class="input-wrap">
+
+                        <div class="input-icon">🔒</div>
+
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Crea una contraseña"
+                        >
+
+                        <button
+                            class="password-toggle"
+                            onclick="togglePassword('password',this)">
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Confirmar contraseña</label>
+
+                    <div class="input-wrap">
+
+                        <div class="input-icon">🔐</div>
+
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            placeholder="Repite tu contraseña"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label class="terms">
+
+                    <input
+                        id="terms"
+                        type="checkbox"
+                    >
+
+                    <span>
+                        Acepto los
+                        <b>Términos y Condiciones</b>
+                        y la
+                        <b>Política de Privacidad</b>.
+                    </span>
+
+                </label>
+
+
+                <button
+                    class="main-button"
+                    onclick="createAccount()">
+
+                    Crear mi cuenta
+
+                </button>
+
+
+                <div class="divider">
+
+                    <div></div>
+
+                    o continúa con
+
+                    <div></div>
+
+                </div>
+
+
+                <div class="socials">
+
+                    <button
+                        class="social"
+                        onclick="socialLogin('Google')">
+
+                        🌈 Google
+
+                    </button>
+
+                    <button
+                        class="social"
+                        onclick="socialLogin('Apple')">
+
+                         Apple
+
+                    </button>
+
+                </div>
+
+
+                <div class="login">
+
+                    ¿Ya tienes una cuenta?
+
+                    <button onclick="showLogin()">
+                        Iniciar sesión
+                    </button>
+
+                </div>
+
+
+                <div class="language">
+
+                    <button
+                        class="selected"
+                        onclick="setLanguage('ES',this)">
+                        🇪🇸 ES
+                    </button>
+
+                    <button
+                        onclick="setLanguage('PT',this)">
+                        🇧🇷 PT
+                    </button>
+
+                    <button
+                        onclick="setLanguage('EN',this)">
+                        🇺🇸 EN
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-    <nav class="nav">
-        <div class="nav-inner">
-            <button onclick="scrollToSection('inicio')">Inicio</button>
-            <button onclick="scrollToSection('categorias')">Categorías</button>
-            <button onclick="scrollToSection('ofertas')">🔥 Ofertas</button>
-            <button onclick="scrollToSection('productos')">Productos</button>
-            <button onclick="showMessage('Área de vendedores próximamente')">Vender</button>
+</section>
+
+
+<!-- =========================================
+     3. PÁGINA PRINCIPAL
+========================================= -->
+
+<section id="home" class="screen home">
+
+    <header class="top-header">
+
+        <div class="top-row">
+
+            <div class="home-logo">
+                Mercado<span>97</span>
+            </div>
+
+            <div class="header-actions">
+
+                <button
+                    class="circle-button"
+                    onclick="showToast('🔔 No tienes nuevas notificaciones')">
+
+                    🔔
+
+                    <span class="badge">3</span>
+
+                </button>
+
+                <button
+                    class="circle-button"
+                    onclick="showToast('❤️ Favoritos')">
+
+                    ♡
+
+                    <span class="badge">5</span>
+
+                </button>
+
+                <button
+                    class="circle-button"
+                    onclick="showCart()">
+
+                    🛒
+
+                    <span
+                        class="badge"
+                        id="cartBadge">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
         </div>
-    </nav>
-
-</header>
 
 
-<main id="inicio">
+        <div class="search-box">
 
-<!-- HERO -->
+            <input
+                id="search"
+                type="search"
+                placeholder="Buscar productos, marcas y más..."
+                oninput="filterProducts()">
 
-<section class="hero">
+            <button>🔎</button>
 
-    <div class="hero-box">
+        </div>
 
-        <div class="hero-content">
 
-            <small>BIENVENIDO A MERCADO97</small>
+        <nav class="menu">
 
-            <h1>
-                Compra más.<br>
-                <span>Paga menos.</span>
-            </h1>
+            <button>Inicio</button>
+            <button>Categorías</button>
+            <button>🔥 Ofertas</button>
+            <button>Productos</button>
+            <button>Vender</button>
+
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <div class="greeting">
+
+            <h2>
+                Hola, <span id="userName">amigo</span> 👋
+            </h2>
 
             <p>
-                Descubre productos, ofertas y oportunidades
-                increíbles en un solo lugar.
+                ¿Qué estás buscando hoy?
             </p>
 
-            <button class="hero-button"
-                    onclick="scrollToSection('productos')">
-                Comprar ahora →
-            </button>
-
         </div>
 
-        <div class="hero-circle"></div>
 
-    </div>
+        <!-- HERO -->
 
-</section>
+        <section class="hero">
 
+            <div class="hero-content">
 
-<!-- CATEGORIAS -->
+                <span class="hero-tag">
+                    OFERTA DEL DÍA
+                </span>
 
-<section class="section" id="categorias">
+                <h1>
+                    HASTA<br>
+                    <span>50% OFF</span>
+                </h1>
 
-    <div class="section-title">
-        <h2>Explora categorías</h2>
-        <span>Ver todas →</span>
-    </div>
+                <p>
+                    En productos seleccionados.
+                    Aprovecha nuestras ofertas especiales.
+                </p>
 
-    <div class="categories">
+                <button
+                    onclick="scrollToProducts()">
 
-        <div class="category">
-            <div class="category-icon">📱</div>
-            <p>Electrónica</p>
-        </div>
-
-        <div class="category">
-            <div class="category-icon">👕</div>
-            <p>Moda</p>
-        </div>
-
-        <div class="category">
-            <div class="category-icon">🏠</div>
-            <p>Hogar</p>
-        </div>
-
-        <div class="category">
-            <div class="category-icon">💄</div>
-            <p>Belleza</p>
-        </div>
-
-        <div class="category">
-            <div class="category-icon">🎮</div>
-            <p>Gaming</p>
-        </div>
-
-        <div class="category">
-            <div class="category-icon">⚽</div>
-            <p>Deportes</p>
-        </div>
-
-        <div class="category">
-            <div class="category-icon">🚗</div>
-            <p>Automóvil</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- OFERTA -->
-
-<section class="section" id="ofertas">
-
-    <div class="offer">
-
-        <div>
-            <h2>🔥 Ofertas relámpago</h2>
-            <p>Descuentos especiales por tiempo limitado.</p>
-        </div>
-
-        <div class="timer">
-
-            <div class="time-box">
-                <strong id="hours">08</strong>
-                <small>Horas</small>
-            </div>
-
-            <div class="time-box">
-                <strong id="minutes">32</strong>
-                <small>Min</small>
-            </div>
-
-            <div class="time-box">
-                <strong id="seconds">45</strong>
-                <small>Seg</small>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PRODUCTOS -->
-
-<section class="section" id="productos">
-
-    <div class="section-title">
-        <h2>🔥 Productos destacados</h2>
-        <span>Ver más →</span>
-    </div>
-
-    <div class="products">
-
-        <article class="product">
-
-            <div class="product-img">📱</div>
-
-            <span class="discount">-25%</span>
-
-            <button class="favorite"
-                    onclick="favorite(this)">
-                ♡
-            </button>
-
-            <div class="product-info">
-
-                <div class="product-name">
-                    Smartphone Pro 5G
-                </div>
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <div class="old-price">
-                    R$ 2.499,00
-                </div>
-
-                <div class="price">
-                    R$ 1.899,00
-                </div>
-
-                <div class="shipping">
-                    ✓ Envío gratis
-                </div>
-
-                <button class="add-cart"
-                        onclick="addCart('Smartphone Pro 5G')">
-                    🛒 Agregar al carrito
+                    Comprar ahora →
                 </button>
 
             </div>
 
-        </article>
+        </section>
 
 
-        <article class="product">
+        <!-- BENEFICIOS -->
 
-            <div class="product-img">🎧</div>
+        <section class="benefits">
 
-            <span class="discount">-40%</span>
+            <div class="benefit">
+                <div class="benefit-icon">🚚</div>
+                <strong>Envío gratis</strong>
+                <small>Productos seleccionados</small>
+            </div>
 
-            <button class="favorite"
-                    onclick="favorite(this)">
-                ♡
-            </button>
+            <div class="benefit">
+                <div class="benefit-icon">🛡️</div>
+                <strong>Compra segura</strong>
+                <small>Protegemos tu compra</small>
+            </div>
 
-            <div class="product-info">
+            <div class="benefit">
+                <div class="benefit-icon">↩️</div>
+                <strong>Devoluciones</strong>
+                <small>Hasta 30 días</small>
+            </div>
 
-                <div class="product-name">
-                    Auriculares Wireless
-                </div>
+            <div class="benefit">
+                <div class="benefit-icon">🎧</div>
+                <strong>Soporte 24/7</strong>
+                <small>Estamos para ayudarte</small>
+            </div>
 
-                <div class="stars">
-                    ★★★★☆
-                </div>
+        </section>
 
-                <div class="old-price">
-                    R$ 399,00
-                </div>
 
-                <div class="price">
-                    R$ 239,00
-                </div>
+        <!-- CATEGORÍAS -->
 
-                <div class="shipping">
-                    ✓ Envío gratis
-                </div>
+        <section>
 
-                <button class="add-cart"
-                        onclick="addCart('Auriculares Wireless')">
-                    🛒 Agregar al carrito
+            <div class="section-title">
+
+                <h2>Explora categorías</h2>
+
+                <button>
+                    Ver todas →
                 </button>
 
             </div>
 
-        </article>
 
+            <div class="categories">
 
-        <article class="product">
-
-            <div class="product-img">👟</div>
-
-            <span class="discount">-30%</span>
-
-            <button class="favorite"
-                    onclick="favorite(this)">
-                ♡
-            </button>
-
-            <div class="product-info">
-
-                <div class="product-name">
-                    Zapatillas deportivas
+                <div class="category">
+                    <div class="category-icon">📱</div>
+                    <p>Electrónica</p>
                 </div>
 
-                <div class="stars">
-                    ★★★★★
+                <div class="category">
+                    <div class="category-icon">👕</div>
+                    <p>Moda</p>
                 </div>
 
-                <div class="old-price">
-                    R$ 299,00
+                <div class="category">
+                    <div class="category-icon">🏠</div>
+                    <p>Hogar</p>
                 </div>
 
-                <div class="price">
-                    R$ 209,00
+                <div class="category">
+                    <div class="category-icon">💄</div>
+                    <p>Belleza</p>
                 </div>
 
-                <div class="shipping">
-                    ✓ Envío gratis
+                <div class="category">
+                    <div class="category-icon">⚽</div>
+                    <p>Deportes</p>
                 </div>
 
-                <button class="add-cart"
-                        onclick="addCart('Zapatillas deportivas')">
-                    🛒 Agregar al carrito
+                <div class="category">
+                    <div class="category-icon">🎮</div>
+                    <p>Gaming</p>
+                </div>
+
+                <div class="category">
+                    <div class="category-icon">🚗</div>
+                    <p>Autos</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- OFERTAS -->
+
+        <section id="productSection">
+
+            <div class="section-title">
+
+                <div class="flash-head">
+
+                    <h2>🔥 Ofertas relámpago</h2>
+
+                    <div class="timer">
+                        <span id="hours">08</span>
+                        <span id="minutes">32</span>
+                        <span id="seconds">45</span>
+                    </div>
+
+                </div>
+
+                <button>
+                    Ver todas →
                 </button>
 
             </div>
 
-        </article>
+
+            <div class="products" id="products">
 
 
-        <article class="product">
+                <!-- PRODUCTO 1 -->
 
-            <div class="product-img">⌚</div>
+                <article
+                    class="product"
+                    data-name="auriculares pro">
 
-            <span class="discount">-35%</span>
+                    <div class="product-img">
+                        🎧
+                    </div>
 
-            <button class="favorite"
-                    onclick="favorite(this)">
-                ♡
-            </button>
+                    <span class="discount">
+                        -35%
+                    </span>
 
-            <div class="product-info">
+                    <button
+                        class="heart"
+                        onclick="favorite(this)">
+                        ♡
+                    </button>
 
-                <div class="product-name">
-                    Smartwatch Ultra
-                </div>
+                    <div class="product-info">
 
-                <div class="stars">
-                    ★★★★★
-                </div>
+                        <div class="product-name">
+                            Auriculares Pro
+                        </div>
 
-                <div class="old-price">
-                    R$ 599,00
-                </div>
+                        <div class="stars">
+                            ★★★★★
+                        </div>
 
-                <div class="price">
-                    R$ 389,00
-                </div>
+                        <div class="sales">
+                            4.8 · 128 vendidos
+                        </div>
 
-                <div class="shipping">
-                    ✓ Envío gratis
-                </div>
+                        <div class="old">
+                            R$ 129,90
+                        </div>
 
-                <button class="add-cart"
-                        onclick="addCart('Smartwatch Ultra')">
-                    🛒 Agregar al carrito
+                        <div class="price">
+                            R$ 84,99
+                        </div>
+
+                        <button
+                            class="cart-button"
+                            onclick="addCart('Auriculares Pro')">
+
+                            🛒
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 2 -->
+
+                <article
+                    class="product"
+                    data-name="smartwatch x">
+
+                    <div class="product-img">
+                        ⌚
+                    </div>
+
+                    <span class="discount">
+                        -40%
+                    </span>
+
+                    <button
+                        class="heart"
+                        onclick="favorite(this)">
+                        ♡
+                    </button>
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Smartwatch X
+                        </div>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="sales">
+                            4.7 · 95 vendidos
+                        </div>
+
+                        <div class="old">
+                            R$ 199,90
+                        </div>
+
+                        <div class="price">
+                            R$ 119,99
+                        </div>
+
+                        <button
+                            class="cart-button"
+                            onclick="addCart('Smartwatch X')">
+
+                            🛒
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 3 -->
+
+                <article
+                    class="product"
+                    data-name="zapatillas urban">
+
+                    <div class="product-img">
+                        👟
+                    </div>
+
+                    <span class="discount">
+                        -30%
+                    </span>
+
+                    <button
+                        class="heart"
+                        onclick="favorite(this)">
+                        ♡
+                    </button>
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Zapatillas Urban
+                        </div>
+
+                        <div class="stars">
+                            ★★★★☆
+                        </div>
+
+                        <div class="sales">
+                            4.6 · 76 vendidos
+                        </div>
+
+                        <div class="old">
+                            R$ 89,90
+                        </div>
+
+                        <div class="price">
+                            R$ 62,99
+                        </div>
+
+                        <button
+                            class="cart-button"
+                            onclick="addCart('Zapatillas Urban')">
+
+                            🛒
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 4 -->
+
+                <article
+                    class="product"
+                    data-name="smartphone 5g">
+
+                    <div class="product-img">
+                        📱
+                    </div>
+
+                    <span class="discount">
+                        -25%
+                    </span>
+
+                    <button
+                        class="heart"
+                        onclick="favorite(this)">
+                        ♡
+                    </button>
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Smartphone 5G
+                        </div>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="sales">
+                            4.9 · 210 vendidos
+                        </div>
+
+                        <div class="old">
+                            R$ 699,90
+                        </div>
+
+                        <div class="price">
+                            R$ 524,99
+                        </div>
+
+                        <button
+                            class="cart-button"
+                            onclick="addCart('Smartphone 5G')">
+
+                            🛒
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECOMENDADOS -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>Recomendados para ti</h2>
+
+                <button>
+                    Ver más →
                 </button>
 
             </div>
 
-        </article>
+            <div class="products">
 
-    </div>
+                <article class="product">
+
+                    <div class="product-img">
+                        🎒
+                    </div>
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Mochila Premium
+                        </div>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="price">
+                            R$ 149,90
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="product">
+
+                    <div class="product-img">
+                        🧴
+                    </div>
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Perfume Premium
+                        </div>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="price">
+                            R$ 219,90
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="product">
+
+                    <div class="product-img">
+                        🍳
+                    </div>
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Air Fryer
+                        </div>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="price">
+                            R$ 299,90
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="product">
+
+                    <div class="product-img">
+                        💻
+                    </div>
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Notebook Pro
+                        </div>
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <div class="price">
+                            R$ 2.499,90
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- BARRA INFERIOR -->
+
+    <nav class="bottom-nav">
+
+        <button class="active">
+            <span>⌂</span>
+            Inicio
+        </button>
+
+        <button>
+            <span>▦</span>
+            Categorías
+        </button>
+
+        <button
+            class="shop-button"
+            onclick="showCart()">
+            🛍
+        </button>
+
+        <button>
+            <span>🔥</span>
+            Ofertas
+        </button>
+
+        <button
+            onclick="showToast('Perfil de usuario')">
+            <span>♙</span>
+            Perfil
+        </button>
+
+    </nav>
 
 </section>
 
-</main>
 
-
-<footer>
-
-    <div class="footer-inner">
-
-        <div class="footer-logo">
-            Mercado<span>97</span>
-        </div>
-
-        <p>
-            Tu nuevo mercado digital.
-        </p>
-
-        <p>
-            © 2026 Mercado97 — Todos los derechos reservados.
-        </p>
-
-    </div>
-
-</footer>
-
-
-<!-- MOBILE NAV -->
-
-<nav class="mobile-nav">
-
-    <button onclick="scrollToSection('inicio')">
-        <span>⌂</span>
-        Inicio
-    </button>
-
-    <button onclick="scrollToSection('categorias')">
-        <span>☰</span>
-        Categorías
-    </button>
-
-    <button onclick="scrollToSection('ofertas')">
-        <span>🔥</span>
-        Ofertas
-    </button>
-
-    <button onclick="showMessage('Carrito: ' + cart + ' productos')">
-        <span>🛒</span>
-        Carrito
-    </button>
-
-    <button onclick="showMessage('Tu perfil estará disponible pronto')">
-        <span>👤</span>
-        Perfil
-    </button>
-
-</nav>
-
-
-<div class="toast" id="toast"></div>
+<div
+    id="toast"
+    class="toast">
+</div>
 
 
 <script>
 
+/* ======================================
+   ESTADO
+====================================== */
+
 let cart = 0;
 
 
-/* ================= CARRITO ================= */
+/* ======================================
+   CAMBIAR PANTALLA
+====================================== */
 
-function addCart(product) {
+function showScreen(id){
 
-    cart++;
+    document.querySelectorAll(".screen")
+        .forEach(screen => {
+            screen.classList.remove("active");
+        });
 
-    document.getElementById("cartCount").textContent = cart;
+    document.getElementById(id)
+        .classList.add("active");
 
-    showMessage(product + " agregado al carrito 🛒");
+    window.scrollTo(0,0);
 }
 
 
-/* ================= FAVORITOS ================= */
+/* ======================================
+   SPLASH
+====================================== */
 
-function favorite(button) {
+setTimeout(() => {
 
-    if (button.textContent === "♡") {
+    showScreen("register");
 
-        button.textContent = "♥";
-        button.style.color = "#e53935";
+},3000);
 
-        showMessage("Agregado a favoritos ❤️");
 
-    } else {
+/* ======================================
+   REGISTRO
+====================================== */
 
-        button.textContent = "♡";
-        button.style.color = "#111";
+function createAccount(){
 
-        showMessage("Eliminado de favoritos");
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirm =
+        document.getElementById("confirmPassword").value;
+
+    const terms =
+        document.getElementById("terms").checked;
+
+
+    if(!name){
+
+        showToast("Escribe tu nombre");
+        return;
+
+    }
+
+    if(!email || !email.includes("@")){
+
+        showToast("Escribe un correo válido");
+        return;
+
+    }
+
+    if(!phone){
+
+        showToast("Escribe tu número de teléfono");
+        return;
+
+    }
+
+    if(password.length < 6){
+
+        showToast("La contraseña debe tener mínimo 6 caracteres");
+        return;
+
+    }
+
+    if(password !== confirm){
+
+        showToast("Las contraseñas no coinciden");
+        return;
+
+    }
+
+    if(!terms){
+
+        showToast("Debes aceptar los términos");
+        return;
+
+    }
+
+
+    localStorage.setItem("mercado97_user",name);
+
+    document.getElementById("userName")
+        .textContent=name.split(" ")[0];
+
+
+    showToast("¡Cuenta creada correctamente! 🎉");
+
+
+    setTimeout(() => {
+
+        showScreen("home");
+
+    },1200);
+
+}
+
+
+/* ======================================
+   LOGIN
+====================================== */
+
+function showLogin(){
+
+    showToast(
+        "El sistema de inicio de sesión se conectará próximamente"
+    );
+
+}
+
+
+/* ======================================
+   SOCIAL
+====================================== */
+
+function socialLogin(provider){
+
+    showToast(
+        "Inicio con " + provider + " próximamente"
+    );
+
+}
+
+
+/* ======================================
+   PASSWORD
+====================================== */
+
+function togglePassword(id,button){
+
+    const input =
+        document.getElementById(id);
+
+    if(input.type === "password"){
+
+        input.type="text";
+        button.textContent="🙈";
+
+    }else{
+
+        input.type="password";
+        button.textContent="👁";
 
     }
 
 }
 
 
-/* ================= MENSAJE ================= */
+/* ======================================
+   IDIOMA
+====================================== */
 
-function showMessage(message) {
+function setLanguage(language,button){
 
-    const toast = document.getElementById("toast");
+    document.querySelectorAll(".language button")
+        .forEach(btn => btn.classList.remove("selected"));
 
-    toast.textContent = message;
+    button.classList.add("selected");
+
+    if(language === "PT"){
+
+        showToast("Português será configurado na próxima etapa 🇧🇷");
+
+    }
+
+    if(language === "EN"){
+
+        showToast("English will be configured in the next step 🇺🇸");
+
+    }
+
+    if(language === "ES"){
+
+        showToast("Idioma español seleccionado 🇪🇸");
+
+    }
+
+}
+
+
+/* ======================================
+   CARRITO
+====================================== */
+
+function addCart(product){
+
+    cart++;
+
+    document.getElementById("cartBadge")
+        .textContent=cart;
+
+    showToast(
+        product + " agregado al carrito 🛒"
+    );
+
+}
+
+
+function showCart(){
+
+    if(cart === 0){
+
+        showToast("Tu carrito está vacío");
+
+    }else{
+
+        showToast(
+            "Tienes " + cart + " producto(s) en tu carrito 🛒"
+        );
+
+    }
+
+}
+
+
+/* ======================================
+   FAVORITOS
+====================================== */
+
+function favorite(button){
+
+    if(button.textContent === "♡"){
+
+        button.textContent="♥";
+        button.style.color="#ef3038";
+
+        showToast("Agregado a favoritos ❤️");
+
+    }else{
+
+        button.textContent="♡";
+        button.style.color="#111";
+
+        showToast("Eliminado de favoritos");
+
+    }
+
+}
+
+
+/* ======================================
+   BUSCADOR
+====================================== */
+
+function filterProducts(){
+
+    const text =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const products =
+        document.querySelectorAll("#products .product");
+
+    products.forEach(product => {
+
+        const name =
+            product.dataset.name;
+
+        if(name.includes(text)){
+
+            product.style.display="block";
+
+        }else{
+
+            product.style.display="none";
+
+        }
+
+    });
+
+}
+
+
+/* ======================================
+   SCROLL
+====================================== */
+
+function scrollToProducts(){
+
+    document.getElementById("productSection")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* ======================================
+   TOAST
+====================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent=message;
 
     toast.classList.add("show");
 
@@ -1062,80 +2041,68 @@ function showMessage(message) {
 
         toast.classList.remove("show");
 
-    }, 2200);
-}
-
-
-/* ================= SCROLL ================= */
-
-function scrollToSection(id) {
-
-    document.getElementById(id).scrollIntoView({
-        behavior: "smooth"
-    });
+    },2500);
 
 }
 
 
-/* ================= BUSCADOR ================= */
+/* ======================================
+   CONTADOR DE OFERTA
+====================================== */
 
-function searchProducts() {
-
-    const text =
-        document.getElementById("searchInput").value.trim();
-
-    if (text === "") {
-
-        showMessage("Escribe algo para buscar 🔎");
-        return;
-
-    }
-
-    showMessage("Buscando: " + text);
-
-}
-
-
-/* ================= CONTADOR ================= */
-
-let seconds = 45;
-let minutes = 32;
-let hours = 8;
+let h=8;
+let m=32;
+let s=45;
 
 setInterval(() => {
 
-    seconds--;
+    s--;
 
-    if (seconds < 0) {
+    if(s<0){
 
-        seconds = 59;
-        minutes--;
-
-    }
-
-    if (minutes < 0) {
-
-        minutes = 59;
-        hours--;
+        s=59;
+        m--;
 
     }
 
-    if (hours < 0) {
+    if(m<0){
 
-        hours = 23;
+        m=59;
+        h--;
 
     }
 
-    document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
+    if(h<0){
 
-    document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
+        h=23;
 
-    document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
+    }
 
-}, 1000);
+    document.getElementById("hours")
+        .textContent=String(h).padStart(2,"0");
+
+    document.getElementById("minutes")
+        .textContent=String(m).padStart(2,"0");
+
+    document.getElementById("seconds")
+        .textContent=String(s).padStart(2,"0");
+
+},1000);
+
+
+/* ======================================
+   RECUPERAR USUARIO
+====================================== */
+
+const savedUser =
+    localStorage.getItem("mercado97_user");
+
+if(savedUser){
+
+    document.getElementById("userName")
+        .textContent=savedUser.split(" ")[0];
+
+}
 
 </script>
 
