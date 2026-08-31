@@ -1,300 +1,1109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercado97</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercado97</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-    }
+<style>
+*{box-sizing:border-box}
 
-    .pantalla {
-      max-width: 600px;
-      margin: 30px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-    }
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f8;
+  color:#222;
+}
 
-    h1 {
-      font-size: 40px;
-      margin-bottom: 35px;
-    }
+header{
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
 
-    h2 {
-      font-size: 30px;
-    }
+.top{
+  max-width:1100px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
 
-    #mensaje {
-      font-size: 25px;
-      margin-bottom: 35px;
-    }
+.logo{
+  font-size:27px;
+  font-weight:bold;
+  color:#16853d;
+  white-space:nowrap;
+}
 
-    .idiomas {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      align-items: center;
-    }
+.search{
+  flex:1;
+  display:flex;
+}
 
-    button {
-      width: 240px;
-      padding: 17px;
-      font-size: 22px;
-      border: none;
-      border-radius: 12px;
-      background: #eeeeee;
-      cursor: pointer;
-    }
+.search input{
+  width:100%;
+  padding:12px 15px;
+  border:1px solid #ddd;
+  border-radius:12px 0 0 12px;
+  font-size:15px;
+  outline:none;
+}
 
-    button:active {
-      transform: scale(0.97);
-    }
+.search button{
+  border:0;
+  background:#16853d;
+  color:white;
+  padding:0 17px;
+  border-radius:0 12px 12px 0;
+  font-size:18px;
+}
 
-    #continuar {
-      display: none;
-      margin: 30px auto 0;
-      background: #20a050;
-      color: white;
-    }
+.lang{
+  padding:9px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  background:white;
+}
 
-    #principal {
-      display: none;
-    }
+.nav{
+  max-width:1100px;
+  margin:auto;
+  padding:0 18px 12px;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+}
 
-    .buscador {
-      width: 90%;
-      padding: 15px;
-      font-size: 18px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
+.nav button{
+  border:0;
+  background:#f0f2f3;
+  padding:9px 13px;
+  border-radius:20px;
+  white-space:nowrap;
+}
 
-    .menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-top: 25px;
-    }
+.hero{
+  max-width:1100px;
+  margin:20px auto;
+  padding:35px 22px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#16853d,#28a955);
+  color:white;
+}
 
-    .menu button {
-      width: 100%;
-      font-size: 18px;
-    }
+.hero h1{
+  margin:0 0 10px;
+  font-size:32px;
+}
 
-    .productos {
-      margin-top: 30px;
-      padding: 25px;
-      background: #f5f5f5;
-      border-radius: 12px;
-    }
-  </style>
+.hero p{
+  font-size:17px;
+  margin-bottom:20px;
+}
+
+.hero button{
+  border:0;
+  padding:12px 20px;
+  border-radius:12px;
+  background:white;
+  color:#16853d;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:0 18px 100px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:25px 0 15px;
+}
+
+.section-title h2{
+  margin:0;
+}
+
+.categories{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.category{
+  min-width:110px;
+  background:white;
+  border:1px solid #eee;
+  border-radius:15px;
+  padding:15px 10px;
+  text-align:center;
+}
+
+.category .icon{
+  font-size:30px;
+  display:block;
+  margin-bottom:7px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:15px;
+}
+
+.product{
+  background:white;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+  position:relative;
+}
+
+.product-img{
+  height:170px;
+  background:#eef1f2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:65px;
+}
+
+.product-info{
+  padding:14px;
+}
+
+.product-info h3{
+  margin:0 0 8px;
+  font-size:16px;
+}
+
+.price{
+  color:#16853d;
+  font-weight:bold;
+  font-size:19px;
+  margin:7px 0;
+}
+
+.product-info small{
+  color:#777;
+}
+
+.product-actions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+}
+
+.product-actions button{
+  flex:1;
+  border:0;
+  padding:10px 5px;
+  border-radius:10px;
+  background:#16853d;
+  color:white;
+}
+
+.favorite{
+  position:absolute;
+  right:10px;
+  top:10px;
+  border:0;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:white;
+  font-size:18px;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:center;
+  z-index:200;
+}
+
+.bottom-inner{
+  width:100%;
+  max-width:700px;
+  display:flex;
+  justify-content:space-around;
+}
+
+.bottom button{
+  background:none;
+  border:0;
+  padding:9px 12px;
+  font-size:12px;
+}
+
+.bottom span{
+  display:block;
+  font-size:21px;
+}
+
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:500;
+  padding:20px;
+  overflow:auto;
+}
+
+.modal{
+  background:white;
+  max-width:600px;
+  margin:30px auto;
+  border-radius:20px;
+  padding:22px;
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close{
+  border:0;
+  background:#eee;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+}
+
+.cart-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item .emoji{
+  font-size:35px;
+}
+
+.qty{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty button{
+  border:0;
+  width:28px;
+  height:28px;
+  border-radius:8px;
+}
+
+.total{
+  font-size:22px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.primary{
+  width:100%;
+  padding:13px;
+  background:#16853d;
+  color:white;
+  border:0;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.form-group{
+  margin-bottom:14px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
+.notice{
+  padding:12px;
+  background:#eaf7ef;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.dark{
+  background:#17191a;
+  color:#eee;
+}
+
+.dark header,
+.dark .product,
+.dark .category,
+.dark .modal,
+.dark .bottom{
+  background:#242728;
+  color:#eee;
+}
+
+.dark .search input,
+.dark .lang,
+.dark .form-group input,
+.dark .form-group select,
+.dark .form-group textarea{
+  background:#333;
+  color:white;
+  border-color:#555;
+}
+
+@media(max-width:600px){
+  .top{
+    flex-wrap:wrap;
+  }
+
+  .logo{
+    width:100%;
+    text-align:center;
+  }
+
+  .search{
+    order:3;
+    width:100%;
+  }
+
+  .hero h1{
+    font-size:26px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-img{
+    height:135px;
+    font-size:50px;
+  }
+
+  .product-info{
+    padding:10px;
+  }
+
+  .product-actions button{
+    font-size:12px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- PANTALLA DE BIENVENIDA -->
+<header>
+  <div class="top">
+    <div class="logo">🛒 Mercado97</div>
 
-  <div class="pantalla" id="bienvenida">
-
-    <h1>Mercado97</h1>
-
-    <p id="mensaje">Tu mercado, fácil y rápido.</p>
-
-    <h2 id="titulo">Bienvenido a Mercado97</h2>
-
-    <div class="idiomas">
-
-      <button onclick="cambiarIdioma('es')">
-        🇪🇸 Español
-      </button>
-
-      <button onclick="cambiarIdioma('pt')">
-        🇧🇷 Português
-      </button>
-
-      <button onclick="cambiarIdioma('en')">
-        🇺🇸 English
-      </button>
-
+    <div class="search">
+      <input id="searchInput" type="text" placeholder="Buscar productos..." oninput="searchProducts()">
+      <button onclick="searchProducts()">🔎</button>
     </div>
 
-    <button id="continuar" onclick="entrar()">
-      Continuar
+    <select class="lang" id="language" onchange="changeLanguage()">
+      <option value="es">🇪🇸 ES</option>
+      <option value="pt">🇧🇷 PT</option>
+      <option value="en">🇺🇸 EN</option>
+    </select>
+  </div>
+
+  <div class="nav">
+    <button onclick="showHome()">🏠 Inicio</button>
+    <button onclick="showCart()">🛒 <span id="cartNav">Carrito (0)</span></button>
+    <button onclick="showFavorites()">❤️ Favoritos</button>
+    <button onclick="showOrders()">📦 Pedidos</button>
+    <button onclick="showSeller()">🏪 Vender</button>
+    <button onclick="toggleDark()">🌙</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <h1 id="heroTitle">Todo lo que buscas en un solo lugar</h1>
+    <p id="heroText">Compra, vende y descubre productos en Mercado97.</p>
+    <button onclick="document.getElementById('productsSection').scrollIntoView()">
+      🛍️ Comprar ahora
+    </button>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2 id="catTitle">Categorías</h2>
+    </div>
+
+    <div class="categories">
+      <div class="category" onclick="filterCategory('Todos')">
+        <span class="icon">🛍️</span>Todos
+      </div>
+
+      <div class="category" onclick="filterCategory('Electrónica')">
+        <span class="icon">📱</span>Electrónica
+      </div>
+
+      <div class="category" onclick="filterCategory('Hogar')">
+        <span class="icon">🏠</span>Hogar
+      </div>
+
+      <div class="category" onclick="filterCategory('Ropa')">
+        <span class="icon">👕</span>Ropa
+      </div>
+
+      <div class="category" onclick="filterCategory('Belleza')">
+        <span class="icon">💄</span>Belleza
+      </div>
+
+      <div class="category" onclick="filterCategory('Deportes')">
+        <span class="icon">⚽</span>Deportes
+      </div>
+    </div>
+  </section>
+
+  <section id="productsSection">
+    <div class="section-title">
+      <h2 id="productsTitle">Productos</h2>
+    </div>
+
+    <div id="products" class="products"></div>
+  </section>
+
+</main>
+
+<div class="bottom">
+  <div class="bottom-inner">
+    <button onclick="showHome()">
+      <span>🏠</span>Inicio
     </button>
 
+    <button onclick="showFavorites()">
+      <span>❤️</span>Favoritos
+    </button>
+
+    <button onclick="showCart()">
+      <span>🛒</span><b id="cartBottom">0</b>
+    </button>
+
+    <button onclick="showOrders()">
+      <span>📦</span>Pedidos
+    </button>
+
+    <button onclick="showSeller()">
+      <span>🏪</span>Vender
+    </button>
   </div>
+</div>
 
+<div id="modalBg" class="modal-bg">
+  <div class="modal">
 
-  <!-- PÁGINA PRINCIPAL -->
-
-  <div class="pantalla" id="principal">
-
-    <h1>Mercado97</h1>
-
-    <h2 id="bienvenidaPrincipal">
-      Bienvenido a Mercado97
-    </h2>
-
-    <input
-      class="buscador"
-      id="buscador"
-      type="text"
-      placeholder="Buscar productos..."
-    >
-
-    <div class="menu">
-
-      <button id="categorias">🛍️ Categorías</button>
-<button id="carrito">🛒 Carrito</button>
-<button id="favoritos">❤️ Favoritos</button>
-<button id="cuenta">👤 Mi cuenta</button>
-
+    <div class="modal-header">
+      <h2 id="modalTitle">Mercado97</h2>
+      <button class="close" onclick="closeModal()">✕</button>
     </div>
 
-    <div class="productos">
+    <div id="modalContent"></div>
 
-      <h2 id="productosTitulo">
-        Productos
-      </h2>
+  </div>
+</div>
 
-      <p id="productosTexto">
-        Aquí aparecerán los productos de Mercado97.
+<script>
+
+const products = [
+  {
+    id:1,
+    name:"Teléfono inteligente",
+    category:"Electrónica",
+    price:299,
+    emoji:"📱",
+    description:"Teléfono moderno para uso diario."
+  },
+  {
+    id:2,
+    name:"Auriculares inalámbricos",
+    category:"Electrónica",
+    price:39,
+    emoji:"🎧",
+    description:"Auriculares Bluetooth."
+  },
+  {
+    id:3,
+    name:"Lámpara para hogar",
+    category:"Hogar",
+    price:25,
+    emoji:"💡",
+    description:"Lámpara moderna para tu hogar."
+  },
+  {
+    id:4,
+    name:"Camiseta",
+    category:"Ropa",
+    price:19,
+    emoji:"👕",
+    description:"Camiseta cómoda para todos los días."
+  },
+  {
+    id:5,
+    name:"Zapatillas deportivas",
+    category:"Deportes",
+    price:55,
+    emoji:"👟",
+    description:"Zapatillas para entrenamiento."
+  },
+  {
+    id:6,
+    name:"Set de belleza",
+    category:"Belleza",
+    price:35,
+    emoji:"💄",
+    description:"Productos de belleza."
+  },
+  {
+    id:7,
+    name:"Mochila",
+    category:"Ropa",
+    price:29,
+    emoji:"🎒",
+    description:"Mochila resistente."
+  },
+  {
+    id:8,
+    name:"Cafetera",
+    category:"Hogar",
+    price:49,
+    emoji:"☕",
+    description:"Cafetera para el hogar."
+  }
+];
+
+let cart = JSON.parse(localStorage.getItem("mercado97_cart")) || [];
+let favorites = JSON.parse(localStorage.getItem("mercado97_favorites")) || [];
+let orders = JSON.parse(localStorage.getItem("mercado97_orders")) || [];
+
+let currentProducts = [...products];
+
+const translations = {
+  es:{
+    search:"Buscar productos...",
+    heroTitle:"Todo lo que buscas en un solo lugar",
+    heroText:"Compra, vende y descubre productos en Mercado97.",
+    categories:"Categorías",
+    products:"Productos"
+  },
+
+  pt:{
+    search:"Buscar produtos...",
+    heroTitle:"Tudo o que você procura em um só lugar",
+    heroText:"Compre, venda e descubra produtos no Mercado97.",
+    categories:"Categorias",
+    products:"Produtos"
+  },
+
+  en:{
+    search:"Search products...",
+    heroTitle:"Everything you are looking for in one place",
+    heroText:"Buy, sell and discover products on Mercado97.",
+    categories:"Categories",
+    products:"Products"
+  }
+};
+
+function saveData(){
+  localStorage.setItem("mercado97_cart",JSON.stringify(cart));
+  localStorage.setItem("mercado97_favorites",JSON.stringify(favorites));
+  localStorage.setItem("mercado97_orders",JSON.stringify(orders));
+  updateCartCount();
+}
+
+function updateCartCount(){
+  let count = cart.reduce((sum,item)=>sum+item.qty,0);
+
+  document.getElementById("cartNav").textContent =
+    "Carrito (" + count + ")";
+
+  document.getElementById("cartBottom").textContent = count;
+}
+
+function renderProducts(list=currentProducts){
+
+  const box=document.getElementById("products");
+
+  if(list.length===0){
+    box.innerHTML='<div class="empty">No encontramos productos.</div>';
+    return;
+  }
+
+  box.innerHTML=list.map(p=>{
+
+    const fav=favorites.includes(p.id);
+
+    return `
+      <div class="product">
+
+        <button class="favorite" onclick="toggleFavorite(${p.id})">
+          ${fav ? "❤️":"♡"}
+        </button>
+
+        <div class="product-img">${p.emoji}</div>
+
+        <div class="product-info">
+          <small>${p.category}</small>
+          <h3>${p.name}</h3>
+          <div class="price">$${p.price.toFixed(2)}</div>
+          <small>${p.description}</small>
+
+          <div class="product-actions">
+            <button onclick="viewProduct(${p.id})">Ver</button>
+            <button onclick="addToCart(${p.id})">🛒+</button>
+          </div>
+        </div>
+
+      </div>
+    `;
+  }).join("");
+}
+
+function addToCart(id){
+
+  const product=products.find(p=>p.id===id);
+
+  const existing=cart.find(item=>item.id===id);
+
+  if(existing){
+    existing.qty++;
+  }else{
+    cart.push({
+      id:id,
+      qty:1
+    });
+  }
+
+  saveData();
+
+  alert("Producto agregado al carrito.");
+}
+
+function toggleFavorite(id){
+
+  if(favorites.includes(id)){
+    favorites=favorites.filter(x=>x!==id);
+  }else{
+    favorites.push(id);
+  }
+
+  saveData();
+  renderProducts(currentProducts);
+}
+
+function showFavorites(){
+
+  const list=products.filter(p=>favorites.includes(p.id));
+
+  openModal(
+    "❤️ Favoritos",
+    list.length
+    ? `<div class="products">${list.map(p=>`
+        <div class="product">
+          <div class="product-img">${p.emoji}</div>
+          <div class="product-info">
+            <h3>${p.name}</h3>
+            <div class="price">$${p.price.toFixed(2)}</div>
+            <button class="primary" onclick="addToCart(${p.id})">
+              🛒 Agregar
+            </button>
+          </div>
+        </div>
+      `).join("")}</div>`
+    : `<div class="empty">Todavía no tienes productos favoritos.</div>`
+  );
+}
+
+function showCart(){
+
+  if(cart.length===0){
+    openModal(
+      "🛒 Carrito",
+      `<div class="empty">
+        <h3>Tu carrito está vacío</h3>
+        <p>Agrega productos para comenzar.</p>
+      </div>`
+    );
+    return;
+  }
+
+  let total=0;
+
+  let html=cart.map(item=>{
+
+    const p=products.find(x=>x.id===item.id);
+
+    if(!p)return "";
+
+    total+=p.price*item.qty;
+
+    return `
+      <div class="cart-item">
+        <div class="emoji">${p.emoji}</div>
+
+        <div>
+          <b>${p.name}</b>
+          <div>$${p.price.toFixed(2)}</div>
+        </div>
+
+        <div class="qty">
+          <button onclick="changeQty(${p.id},-1)">−</button>
+          <b>${item.qty}</b>
+          <button onclick="changeQty(${p.id},1)">+</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  html+=`
+    <div class="total">
+      Total: $${total.toFixed(2)}
+    </div>
+
+    <button class="primary" onclick="checkout()">
+      💳 Continuar con la compra
+    </button>
+  `;
+
+  openModal("🛒 Carrito",html);
+}
+
+function changeQty(id,amount){
+
+  const item=cart.find(x=>x.id===id);
+
+  if(!item)return;
+
+  item.qty+=amount;
+
+  if(item.qty<=0){
+    cart=cart.filter(x=>x.id!==id);
+  }
+
+  saveData();
+  showCart();
+}
+
+function checkout(){
+
+  if(cart.length===0)return;
+
+  const newOrder={
+    id:Date.now(),
+    date:new Date().toLocaleString(),
+    items:[...cart],
+    status:"Pendiente"
+  };
+
+  orders.push(newOrder);
+  cart=[];
+
+  saveData();
+
+  openModal(
+    "✅ Pedido recibido",
+    `
+      <div class="notice">
+        Tu pedido fue registrado correctamente.
+      </div>
+
+      <p>
+        En una siguiente etapa conectaremos Mercado97
+        con pagos reales, dirección de entrega y seguimiento.
       </p>
 
-    </div>
+      <button class="primary" onclick="closeModal()">
+        Continuar
+      </button>
+    `
+  );
+}
 
-  </div>
+function showOrders(){
 
+  if(orders.length===0){
+    openModal(
+      "📦 Mis pedidos",
+      `<div class="empty">
+        Todavía no tienes pedidos.
+      </div>`
+    );
+    return;
+  }
 
-  <script>
+  const html=orders.map(o=>{
 
-    let idiomaActual = "es";
+    let total=0;
 
+    o.items.forEach(item=>{
+      const p=products.find(x=>x.id===item.id);
+      if(p)total+=p.price*item.qty;
+    });
 
-    function cambiarIdioma(idioma) {
+    return `
+      <div class="notice">
+        <b>Pedido #${o.id}</b>
+        <br>
+        Fecha: ${o.date}
+        <br>
+        Estado: ${o.status}
+        <br>
+        Total: $${total.toFixed(2)}
+      </div>
+    `;
 
-      idiomaActual = idioma;
+  }).join("");
 
-      document.documentElement.lang = idioma;
+  openModal("📦 Mis pedidos",html);
+}
 
-      document.getElementById("continuar").style.display = "block";
+function showSeller(){
 
+  openModal(
+    "🏪 Vender en Mercado97",
+    `
+      <p>
+        Publica tus productos para comenzar a vender.
+      </p>
 
-      if (idioma === "es") {
+      <div class="form-group">
+        <label>Nombre del producto</label>
+        <input id="sellerName" placeholder="Ejemplo: Teléfono">
+      </div>
 
-        document.getElementById("mensaje").textContent =
-          "Tu mercado, fácil y rápido.";
+      <div class="form-group">
+        <label>Precio</label>
+        <input id="sellerPrice" type="number" placeholder="0.00">
+      </div>
 
-        document.getElementById("titulo").textContent =
-          "Bienvenido a Mercado97";
+      <div class="form-group">
+        <label>Categoría</label>
+        <select id="sellerCategory">
+          <option>Electrónica</option>
+          <option>Hogar</option>
+          <option>Ropa</option>
+          <option>Belleza</option>
+          <option>Deportes</option>
+        </select>
+      </div>
 
-        document.getElementById("continuar").textContent =
-          "Continuar";
+      <div class="form-group">
+        <label>Descripción</label>
+        <textarea id="sellerDescription" rows="4"></textarea>
+      </div>
 
-      }
+      <button class="primary" onclick="publishProduct()">
+        ➕ Publicar producto
+      </button>
+    `
+  );
+}
 
+function publishProduct(){
 
-      if (idioma === "pt") {
+  const name=document.getElementById("sellerName").value.trim();
+  const price=parseFloat(document.getElementById("sellerPrice").value);
+  const category=document.getElementById("sellerCategory").value;
+  const description=document.getElementById("sellerDescription").value.trim();
 
-        document.documentElement.lang = "pt-BR";
+  if(!name || !price){
+    alert("Completa el nombre y el precio.");
+    return;
+  }
 
-        document.getElementById("mensaje").textContent =
-          "Seu mercado, fácil e rápido.";
+  products.push({
+    id:Date.now(),
+    name:name,
+    price:price,
+    category:category,
+    description:description || "Producto publicado en Mercado97.",
+    emoji:"📦"
+  });
 
-        document.getElementById("titulo").textContent =
-          "Bem-vindo ao Mercado97";
+  currentProducts=[...products];
 
-        document.getElementById("continuar").textContent =
-          "Continuar";
+  closeModal();
+  renderProducts();
+  alert("Producto publicado correctamente.");
+}
 
-      }
+function viewProduct(id){
 
+  const p=products.find(x=>x.id===id);
 
-      if (idioma === "en") {
+  if(!p)return;
 
-        document.documentElement.lang = "en-US";
+  openModal(
+    p.name,
+    `
+      <div style="text-align:center;font-size:90px">
+        ${p.emoji}
+      </div>
 
-        document.getElementById("mensaje").textContent =
-          "Your marketplace, easy and fast.";
+      <h2>${p.name}</h2>
 
-        document.getElementById("titulo").textContent =
-          "Welcome to Mercado97";
+      <p>${p.description}</p>
 
-        document.getElementById("continuar").textContent =
-          "Continue";
+      <div class="price">$${p.price.toFixed(2)}</div>
 
-      }
+      <p>Categoría: ${p.category}</p>
 
-    }
+      <button class="primary" onclick="addToCart(${p.id})">
+        🛒 Agregar al carrito
+      </button>
+    `
+  );
+}
 
+function searchProducts(){
 
-    function entrar() {
+  const text=document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
 
-      document.getElementById("bienvenida").style.display = "none";
+  currentProducts=products.filter(p=>
+    p.name.toLowerCase().includes(text) ||
+    p.category.toLowerCase().includes(text) ||
+    p.description.toLowerCase().includes(text)
+  );
 
-      document.getElementById("principal").style.display = "block";
+  renderProducts(currentProducts);
+}
 
+function filterCategory(category){
 
-      if (idiomaActual === "es") {
+  if(category==="Todos"){
+    currentProducts=[...products];
+  }else{
+    currentProducts=products.filter(p=>p.category===category);
+  }
 
-        document.getElementById("bienvenidaPrincipal").textContent =
-          "Bienvenido a Mercado97";
+  renderProducts(currentProducts);
 
-        document.getElementById("buscador").placeholder =
-          "Buscar productos...";
+  document.getElementById("productsSection")
+    .scrollIntoView({behavior:"smooth"});
+}
 
-        document.getElementById("productosTitulo").textContent =
-          "Productos";
+function showHome(){
 
-        document.getElementById("productosTexto").textContent =
-          "Aquí aparecerán los productos de Mercado97.";
+  closeModal();
 
-      }
+  currentProducts=[...products];
 
+  document.getElementById("searchInput").value="";
 
-      if (idiomaActual === "pt") {
+  renderProducts();
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
 
-        document.getElementById("bienvenidaPrincipal").textContent =
-          "Bem-vindo ao Mercado97";
+function toggleDark(){
 
-        document.getElementById("buscador").placeholder =
-          "Buscar produtos...";
+  document.body.classList.toggle("dark");
 
-        document.getElementById("productosTitulo").textContent =
-          "Produtos";
+  localStorage.setItem(
+    "mercado97_dark",
+    document.body.classList.contains("dark")
+  );
+}
 
-        document.getElementById("productosTexto").textContent =
-          "Aqui aparecerão os produtos do Mercado97.";
+function openModal(title,content){
 
-      }
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalContent").innerHTML=content;
+  document.getElementById("modalBg").style.display="block";
+}
 
+function closeModal(){
 
-      if (idiomaActual === "en") {
+  document.getElementById("modalBg").style.display="none";
+}
 
-        document.getElementById("bienvenidaPrincipal").textContent =
-          "Welcome to Mercado97";
+function changeLanguage(){
 
-        document.getElementById("buscador").placeholder =
-          "Search products...";
+  const lang=document.getElementById("language").value;
+  const t=translations[lang];
 
-        document.getElementById("productosTitulo").textContent =
-          "Products";
+  document.getElementById("searchInput").placeholder=t.search;
+  document.getElementById("heroTitle").textContent=t.heroTitle;
+  document.getElementById("heroText").textContent=t.heroText;
+  document.getElementById("catTitle").textContent=t.categories;
+  document.getElementById("productsTitle").textContent=t.products;
 
-        document.getElementById("productosTexto").textContent =
-          "Mercado97 products will appear here.";
+  localStorage.setItem("mercado97_language",lang);
+}
 
-      }
+function loadSettings(){
 
-    }
+  const dark=localStorage.getItem("mercado97_dark");
 
-  </script>
+  if(dark==="true"){
+    document.body.classList.add("dark");
+  }
+
+  const lang=localStorage.getItem("mercado97_language");
+
+  if(lang){
+    document.getElementById("language").value=lang;
+    changeLanguage();
+  }
+}
+
+document.getElementById("modalBg").addEventListener("click",function(e){
+
+  if(e.target===this){
+    closeModal();
+  }
+
+});
+
+renderProducts();
+updateCartCount();
+loadSettings();
+
+</script>
 
 </body>
 </html>
