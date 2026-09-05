@@ -1,1 +1,1322 @@
 
+/* =========================================================
+   M97 — MERCADO DIGITAL
+   SCRIPT PRINCIPAL
+   Versão Premium
+   ========================================================= */
+
+"use strict";
+
+/* =========================================================
+   CONFIGURAÇÃO
+   ========================================================= */
+
+const M97 = {
+    language: localStorage.getItem("m97-language") || "pt",
+    cart: JSON.parse(localStorage.getItem("m97-cart") || "[]"),
+    favorites: JSON.parse(localStorage.getItem("m97-favorites") || "[]"),
+    theme: localStorage.getItem("m97-theme") || "light"
+};
+
+
+/* =========================================================
+   PRODUTOS
+   ========================================================= */
+
+const products = [
+    {
+        id: 1,
+        category: "electronics",
+        image: "images/product-1.jpg",
+        names: {
+            pt: "Smartphone Premium",
+            es: "Smartphone Premium",
+            en: "Premium Smartphone"
+        },
+        price: 799.90,
+        oldPrice: 999.90,
+        discount: 20,
+        rating: 4.9
+    },
+
+    {
+        id: 2,
+        category: "fashion",
+        image: "images/product-2.jpg",
+        names: {
+            pt: "Tênis Esportivo",
+            es: "Zapatillas Deportivas",
+            en: "Sport Sneakers"
+        },
+        price: 159.90,
+        oldPrice: 219.90,
+        discount: 27,
+        rating: 4.8
+    },
+
+    {
+        id: 3,
+        category: "home",
+        image: "images/product-3.jpg",
+        names: {
+            pt: "Kit Casa Inteligente",
+            es: "Kit Casa Inteligente",
+            en: "Smart Home Kit"
+        },
+        price: 249.90,
+        oldPrice: 349.90,
+        discount: 29,
+        rating: 4.7
+    },
+
+    {
+        id: 4,
+        category: "beauty",
+        image: "images/product-4.jpg",
+        names: {
+            pt: "Kit Beleza Premium",
+            es: "Kit de Belleza Premium",
+            en: "Premium Beauty Kit"
+        },
+        price: 119.90,
+        oldPrice: 179.90,
+        discount: 33,
+        rating: 4.8
+    },
+
+    {
+        id: 5,
+        category: "electronics",
+        image: "images/product-5.jpg",
+        names: {
+            pt: "Fone Bluetooth",
+            es: "Auriculares Bluetooth",
+            en: "Bluetooth Headphones"
+        },
+        price: 89.90,
+        oldPrice: 139.90,
+        discount: 36,
+        rating: 4.9
+    },
+
+    {
+        id: 6,
+        category: "home",
+        image: "images/product-6.jpg",
+        names: {
+            pt: "Luminária LED",
+            es: "Lámpara LED",
+            en: "LED Lamp"
+        },
+        price: 69.90,
+        oldPrice: 99.90,
+        discount: 30,
+        rating: 4.6
+    },
+
+    {
+        id: 7,
+        category: "fashion",
+        image: "images/product-7.jpg",
+        names: {
+            pt: "Relógio Moderno",
+            es: "Reloj Moderno",
+            en: "Modern Watch"
+        },
+        price: 199.90,
+        oldPrice: 299.90,
+        discount: 33,
+        rating: 4.8
+    },
+
+    {
+        id: 8,
+        category: "electronics",
+        image: "images/product-8.jpg",
+        names: {
+            pt: "Caixa de Som",
+            es: "Altavoz Bluetooth",
+            en: "Bluetooth Speaker"
+        },
+        price: 129.90,
+        oldPrice: 189.90,
+        discount: 32,
+        rating: 4.7
+    }
+];
+
+
+/* =========================================================
+   TRADUÇÕES
+   ========================================================= */
+
+const translations = {
+
+    pt: {
+        search: "Pesquisar produtos...",
+        all: "Todos",
+        electronics: "Eletrônicos",
+        fashion: "Moda",
+        home: "Casa",
+        beauty: "Beleza",
+        offers: "Ofertas",
+        cart: "Carrinho",
+        favorites: "Favoritos",
+        login: "Entrar",
+        register: "Criar conta",
+        add: "Adicionar",
+        buy: "Comprar agora",
+        emptyCart: "Seu carrinho está vazio",
+        emptyFavorites: "Você ainda não tem favoritos",
+        welcome: "Bem-vindo ao M97",
+        digitalMarket: "Seu mercado digital"
+    },
+
+    es: {
+        search: "Buscar productos...",
+        all: "Todos",
+        electronics: "Electrónica",
+        fashion: "Moda",
+        home: "Hogar",
+        beauty: "Belleza",
+        offers: "Ofertas",
+        cart: "Carrito",
+        favorites: "Favoritos",
+        login: "Entrar",
+        register: "Crear cuenta",
+        add: "Agregar",
+        buy: "Comprar ahora",
+        emptyCart: "Tu carrito está vacío",
+        emptyFavorites: "Todavía no tienes favoritos",
+        welcome: "Bienvenido a M97",
+        digitalMarket: "Tu mercado digital"
+    },
+
+    en: {
+        search: "Search products...",
+        all: "All",
+        electronics: "Electronics",
+        fashion: "Fashion",
+        home: "Home",
+        beauty: "Beauty",
+        offers: "Deals",
+        cart: "Cart",
+        favorites: "Favorites",
+        login: "Login",
+        register: "Create account",
+        add: "Add",
+        buy: "Buy now",
+        emptyCart: "Your cart is empty",
+        emptyFavorites: "You have no favorites yet",
+        welcome: "Welcome to M97",
+        digitalMarket: "Your digital market"
+    }
+};
+
+
+/* =========================================================
+   ELEMENTOS
+   ========================================================= */
+
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    initializeM97();
+
+});
+
+
+function initializeM97() {
+
+    applyTheme();
+    applyLanguage();
+
+    renderProducts(products);
+    updateCartCounter();
+    updateFavoriteCounter();
+
+    setupSearch();
+    setupCategoryButtons();
+    setupLanguageButtons();
+    setupThemeButton();
+    setupMenu();
+
+    animateElements();
+
+}
+
+
+/* =========================================================
+   IDIOMAS
+   ========================================================= */
+
+function applyLanguage() {
+
+    const lang = translations[M97.language];
+
+    if (!lang) return;
+
+    $$("[data-i18n]").forEach(element => {
+
+        const key = element.dataset.i18n;
+
+        if (lang[key]) {
+            element.textContent = lang[key];
+        }
+
+    });
+
+    $$("[data-i18n-placeholder]").forEach(element => {
+
+        const key = element.dataset.i18nPlaceholder;
+
+        if (lang[key]) {
+            element.placeholder = lang[key];
+        }
+
+    });
+
+    document.documentElement.lang = M97.language;
+
+}
+
+
+function changeLanguage(language) {
+
+    if (!translations[language]) return;
+
+    M97.language = language;
+
+    localStorage.setItem("m97-language", language);
+
+    applyLanguage();
+    renderProducts(products);
+
+    showNotification(
+        language === "pt"
+            ? "Idioma alterado"
+            : language === "es"
+                ? "Idioma cambiado"
+                : "Language changed"
+    );
+
+}
+
+
+/* =========================================================
+   BOTÕES DE IDIOMA
+   ========================================================= */
+
+function setupLanguageButtons() {
+
+    $$("[data-language]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            changeLanguage(button.dataset.language);
+
+            $$("[data-language]").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   PRODUTOS
+   ========================================================= */
+
+function renderProducts(list) {
+
+    const containers = [
+        ".products-grid",
+        "#products",
+        ".product-grid",
+        "[data-products]"
+    ];
+
+    let container = null;
+
+    for (const selector of containers) {
+
+        container = $(selector);
+
+        if (container) break;
+
+    }
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (!list.length) {
+
+        container.innerHTML = `
+            <div class="m97-no-results">
+                <div class="m97-no-results-icon">🔎</div>
+                <h3>Nenhum produto encontrado</h3>
+                <p>Tente pesquisar outro produto.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.forEach((product, index) => {
+
+        const card = document.createElement("article");
+
+        card.className = "product-card";
+
+        card.dataset.id = product.id;
+
+        card.style.animationDelay = `${index * 0.06}s`;
+
+        const isFavorite = M97.favorites.includes(product.id);
+
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                <img
+                    src="${product.image}"
+                    alt="${product.names[M97.language]}"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                >
+
+                <span class="discount">
+                    -${product.discount}%
+                </span>
+
+                <button
+                    class="favorite-btn ${isFavorite ? "active" : ""}"
+                    data-favorite="${product.id}"
+                    aria-label="Favorito"
+                >
+                    ${isFavorite ? "♥" : "♡"}
+                </button>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-rating">
+                    ⭐ ${product.rating}
+                </div>
+
+                <h3>
+                    ${product.names[M97.language]}
+                </h3>
+
+                <div class="price-area">
+
+                    <strong>
+                        ${formatPrice(product.price)}
+                    </strong>
+
+                    <del>
+                        ${formatPrice(product.oldPrice)}
+                    </del>
+
+                </div>
+
+                <div class="product-actions">
+
+                    <button
+                        class="add-cart"
+                        data-cart="${product.id}"
+                    >
+                        🛒 ${translations[M97.language].add}
+                    </button>
+
+                    <button
+                        class="buy-now"
+                        data-buy="${product.id}"
+                    >
+                        ${translations[M97.language].buy}
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        container.appendChild(card);
+
+    });
+
+
+    setupProductButtons();
+
+}
+
+
+/* =========================================================
+   BOTÕES DOS PRODUTOS
+   ========================================================= */
+
+function setupProductButtons() {
+
+    $$("[data-cart]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const id = Number(button.dataset.cart);
+
+            addToCart(id);
+
+        });
+
+    });
+
+
+    $$("[data-buy]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const id = Number(button.dataset.buy);
+
+            buyProduct(id);
+
+        });
+
+    });
+
+
+    $$("[data-favorite]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const id = Number(button.dataset.favorite);
+
+            toggleFavorite(id);
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   CARRINHO
+   ========================================================= */
+
+function addToCart(id) {
+
+    const product = products.find(item => item.id === id);
+
+    if (!product) return;
+
+    const existing = M97.cart.find(item => item.id === id);
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        M97.cart.push({
+            id: id,
+            quantity: 1
+        });
+
+    }
+
+    saveCart();
+
+    updateCartCounter();
+
+    showNotification(
+        M97.language === "pt"
+            ? `${product.names.pt} adicionado ao carrinho`
+            : M97.language === "es"
+                ? `${product.names.es} agregado al carrito`
+                : `${product.names.en} added to cart`
+    );
+
+}
+
+
+function removeFromCart(id) {
+
+    M97.cart = M97.cart.filter(item => item.id !== id);
+
+    saveCart();
+
+    updateCartCounter();
+
+}
+
+
+function changeQuantity(id, amount) {
+
+    const item = M97.cart.find(product => product.id === id);
+
+    if (!item) return;
+
+    item.quantity += amount;
+
+    if (item.quantity <= 0) {
+
+        removeFromCart(id);
+
+        return;
+
+    }
+
+    saveCart();
+
+    updateCartCounter();
+
+}
+
+
+function saveCart() {
+
+    localStorage.setItem(
+        "m97-cart",
+        JSON.stringify(M97.cart)
+    );
+
+}
+
+
+function updateCartCounter() {
+
+    const total = M97.cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+    );
+
+    $$("[data-cart-count]").forEach(element => {
+
+        element.textContent = total;
+
+        element.style.display = total > 0 ? "flex" : "none";
+
+    });
+
+}
+
+
+/* =========================================================
+   FAVORITOS
+   ========================================================= */
+
+function toggleFavorite(id) {
+
+    const index = M97.favorites.indexOf(id);
+
+    if (index === -1) {
+
+        M97.favorites.push(id);
+
+        showNotification(
+            M97.language === "pt"
+                ? "Adicionado aos favoritos ❤️"
+                : M97.language === "es"
+                    ? "Agregado a favoritos ❤️"
+                    : "Added to favorites ❤️"
+        );
+
+    } else {
+
+        M97.favorites.splice(index, 1);
+
+    }
+
+    localStorage.setItem(
+        "m97-favorites",
+        JSON.stringify(M97.favorites)
+    );
+
+    updateFavoriteCounter();
+
+    renderProducts(products);
+
+}
+
+
+function updateFavoriteCounter() {
+
+    $$("[data-favorite-count]").forEach(element => {
+
+        element.textContent = M97.favorites.length;
+
+    });
+
+}
+
+
+/* =========================================================
+   COMPRAR AGORA
+   ========================================================= */
+
+function buyProduct(id) {
+
+    const product = products.find(item => item.id === id);
+
+    if (!product) return;
+
+    addToCart(id);
+
+    setTimeout(() => {
+
+        openCart();
+
+    }, 250);
+
+}
+
+
+/* =========================================================
+   PESQUISA
+   ========================================================= */
+
+function setupSearch() {
+
+    const searchInputs = $$(
+        'input[type="search"], [data-search], .search-input'
+    );
+
+    searchInputs.forEach(input => {
+
+        input.addEventListener("input", () => {
+
+            const query = input.value
+                .trim()
+                .toLowerCase();
+
+            if (!query) {
+
+                renderProducts(products);
+
+                return;
+
+            }
+
+            const results = products.filter(product => {
+
+                return Object.values(product.names)
+                    .some(name =>
+                        name.toLowerCase().includes(query)
+                    );
+
+            });
+
+            renderProducts(results);
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   CATEGORIAS
+   ========================================================= */
+
+function setupCategoryButtons() {
+
+    $$("[data-category]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const category = button.dataset.category;
+
+            $$("[data-category]").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            if (
+                category === "all" ||
+                category === "todos"
+            ) {
+
+                renderProducts(products);
+
+                return;
+
+            }
+
+            const filtered = products.filter(
+                product => product.category === category
+            );
+
+            renderProducts(filtered);
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   ABRIR CARRINHO
+   ========================================================= */
+
+function openCart() {
+
+    const modal =
+        $("#cart-modal") ||
+        $(".cart-modal") ||
+        $("[data-cart-modal]");
+
+    if (modal) {
+
+        modal.classList.add("active");
+        document.body.classList.add("modal-open");
+
+        renderCart();
+
+        return;
+
+    }
+
+    renderCart();
+
+}
+
+
+/* =========================================================
+   FECHAR CARRINHO
+   ========================================================= */
+
+function closeCart() {
+
+    const modal =
+        $("#cart-modal") ||
+        $(".cart-modal") ||
+        $("[data-cart-modal]");
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    document.body.classList.remove("modal-open");
+
+}
+
+
+/* =========================================================
+   RENDERIZAR CARRINHO
+   ========================================================= */
+
+function renderCart() {
+
+    const container =
+        $("#cart-items") ||
+        $(".cart-items") ||
+        $("[data-cart-items]");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (!M97.cart.length) {
+
+        container.innerHTML = `
+            <div class="empty-cart">
+                <div class="empty-cart-icon">🛒</div>
+                <h3>${translations[M97.language].emptyCart}</h3>
+            </div>
+        `;
+
+        updateCartTotal();
+
+        return;
+
+    }
+
+
+    M97.cart.forEach(item => {
+
+        const product = products.find(
+            product => product.id === item.id
+        );
+
+        if (!product) return;
+
+        const element = document.createElement("div");
+
+        element.className = "cart-item";
+
+        element.innerHTML = `
+
+            <img
+                src="${product.image}"
+                alt="${product.names[M97.language]}"
+            >
+
+            <div class="cart-item-info">
+
+                <h4>
+                    ${product.names[M97.language]}
+                </h4>
+
+                <strong>
+                    ${formatPrice(product.price)}
+                </strong>
+
+                <div class="quantity">
+
+                    <button
+                        data-minus="${product.id}"
+                    >
+                        −
+                    </button>
+
+                    <span>
+                        ${item.quantity}
+                    </span>
+
+                    <button
+                        data-plus="${product.id}"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                class="remove-item"
+                data-remove="${product.id}"
+            >
+                ×
+            </button>
+        `;
+
+        container.appendChild(element);
+
+    });
+
+
+    $$("[data-minus]").forEach(button => {
+
+        button.onclick = () => {
+
+            changeQuantity(
+                Number(button.dataset.minus),
+                -1
+            );
+
+            renderCart();
+
+        };
+
+    });
+
+
+    $$("[data-plus]").forEach(button => {
+
+        button.onclick = () => {
+
+            changeQuantity(
+                Number(button.dataset.plus),
+                1
+            );
+
+            renderCart();
+
+        };
+
+    });
+
+
+    $$("[data-remove]").forEach(button => {
+
+        button.onclick = () => {
+
+            removeFromCart(
+                Number(button.dataset.remove)
+            );
+
+            renderCart();
+
+        };
+
+    });
+
+
+    updateCartTotal();
+
+}
+
+
+/* =========================================================
+   TOTAL DO CARRINHO
+   ========================================================= */
+
+function updateCartTotal() {
+
+    const total = M97.cart.reduce((sum, item) => {
+
+        const product = products.find(
+            product => product.id === item.id
+        );
+
+        if (!product) return sum;
+
+        return sum + (
+            product.price * item.quantity
+        );
+
+    }, 0);
+
+
+    $$("[data-cart-total]").forEach(element => {
+
+        element.textContent = formatPrice(total);
+
+    });
+
+}
+
+
+/* =========================================================
+   FORMATAÇÃO DE PREÇO
+   ========================================================= */
+
+function formatPrice(value) {
+
+    if (M97.language === "pt") {
+
+        return value.toLocaleString(
+            "pt-BR",
+            {
+                style: "currency",
+                currency: "BRL"
+            }
+        );
+
+    }
+
+    if (M97.language === "es") {
+
+        return value.toLocaleString(
+            "es-VE",
+            {
+                style: "currency",
+                currency: "USD"
+            }
+        );
+
+    }
+
+    return value.toLocaleString(
+        "en-US",
+        {
+            style: "currency",
+            currency: "USD"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MENU MOBILE
+   ========================================================= */
+
+function setupMenu() {
+
+    const menuButton =
+        $(".menu-button") ||
+        $("#menu-button") ||
+        $("[data-menu-button]");
+
+    const menu =
+        $(".mobile-menu") ||
+        $("#mobile-menu") ||
+        $("[data-mobile-menu]");
+
+    if (!menuButton || !menu) return;
+
+    menuButton.addEventListener("click", () => {
+
+        menu.classList.toggle("active");
+
+        document.body.classList.toggle(
+            "menu-open"
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   TEMA
+   ========================================================= */
+
+function setupThemeButton() {
+
+    const buttons = $$(
+        "[data-theme], #theme-toggle, .theme-toggle"
+    );
+
+    buttons.forEach(button => {
+
+        button.addEventListener("click", toggleTheme);
+
+    });
+
+}
+
+
+function toggleTheme() {
+
+    M97.theme =
+        M97.theme === "dark"
+            ? "light"
+            : "dark";
+
+    localStorage.setItem(
+        "m97-theme",
+        M97.theme
+    );
+
+    applyTheme();
+
+}
+
+
+function applyTheme() {
+
+    document.documentElement.dataset.theme =
+        M97.theme;
+
+    document.body.classList.toggle(
+        "dark-mode",
+        M97.theme === "dark"
+    );
+
+}
+
+
+/* =========================================================
+   NOTIFICAÇÕES
+   ========================================================= */
+
+function showNotification(message) {
+
+    let notification =
+        $(".m97-notification");
+
+    if (!notification) {
+
+        notification =
+            document.createElement("div");
+
+        notification.className =
+            "m97-notification";
+
+        document.body.appendChild(notification);
+
+    }
+
+    notification.textContent = message;
+
+    notification.classList.add("show");
+
+    clearTimeout(
+        notification.hideTimer
+    );
+
+    notification.hideTimer =
+        setTimeout(() => {
+
+            notification.classList.remove("show");
+
+        }, 2500);
+
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+
+function animateElements() {
+
+    const elements = $$(
+        ".product-card, .hero, .category-card, .section-title"
+    );
+
+    if (!elements.length) return;
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.1
+            }
+        );
+
+
+    elements.forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+}
+
+
+/* =========================================================
+   BOTÕES DE CARRINHO
+   ========================================================= */
+
+$$("[data-open-cart]").forEach(button => {
+
+    button.addEventListener(
+        "click",
+        openCart
+    );
+
+});
+
+
+$$("[data-close-cart]").forEach(button => {
+
+    button.addEventListener(
+        "click",
+        closeCart
+    );
+
+});
+
+
+/* =========================================================
+   FECHAR MODAIS COM ESC
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+
+            closeCart();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FECHAR MODAL CLICANDO FORA
+   ========================================================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const modal =
+            $("#cart-modal") ||
+            $(".cart-modal");
+
+        if (!modal) return;
+
+        if (
+            event.target === modal
+        ) {
+
+            closeCart();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PROTEÇÃO BÁSICA DE ERROS
+   ========================================================= */
+
+window.addEventListener(
+    "error",
+    event => {
+
+        console.warn(
+            "M97 encontrou um erro:",
+            event.message
+        );
+
+    }
+);
+
+
+/* =========================================================
+   API M97
+   ========================================================= */
+
+window.M97 = {
+
+    products,
+
+    addToCart,
+
+    removeFromCart,
+
+    changeQuantity,
+
+    toggleFavorite,
+
+    changeLanguage,
+
+    openCart,
+
+    closeCart,
+
+    showNotification
+
+};
+
+
+/* =========================================================
+   FIM DO SISTEMA M97
+   ========================================================= */
