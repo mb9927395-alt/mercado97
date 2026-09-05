@@ -1,1 +1,1570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,
+                   maximum-scale=1.0, user-scalable=no">
+
+    <meta name="theme-color" content="#111111">
+
+    <meta name="description"
+          content="M97 — seu mercado digital. Encontre produtos, ofertas e oportunidades em um só lugar.">
+
+    <title>M97 — Seu mercado digital</title>
+
+    <!-- Ícones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Nosso CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     TELA DE ABERTURA
+========================================================= -->
+
+<div id="splashScreen" class="splash-screen">
+
+    <div class="splash-logo">
+
+        <div class="logo-mark">
+            <span>M</span>
+            <span>97</span>
+        </div>
+
+        <div class="logo-name">M97</div>
+
+        <div class="logo-tagline">
+            seu mercado digital
+        </div>
+
+    </div>
+
+    <div class="splash-loader">
+        <div class="loader-bar"></div>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     APLICAÇÃO
+========================================================= -->
+
+<div id="app" class="app">
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="top-header">
+
+    <div class="header-main">
+
+        <!-- MENU -->
+        <button
+            class="icon-button menu-button"
+            id="menuButton"
+            aria-label="Abrir menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- LOGO -->
+        <a href="#" class="brand" aria-label="M97 início">
+
+            <div class="brand-mark">
+                M97
+            </div>
+
+            <div class="brand-text">
+                <strong>M97</strong>
+                <small>seu mercado digital</small>
+            </div>
+
+        </a>
+
+
+        <!-- AÇÕES -->
+        <div class="header-actions">
+
+            <button
+                class="icon-button"
+                id="searchButton"
+                aria-label="Pesquisar">
+
+                <span class="search-icon"></span>
+
+            </button>
+
+            <button
+                class="icon-button cart-button"
+                id="cartButton"
+                aria-label="Carrinho">
+
+                <span class="cart-icon">🛒</span>
+
+                <span
+                    class="cart-count"
+                    id="cartCount">
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PESQUISA -->
+    <div class="search-area">
+
+        <div class="search-box">
+
+            <span class="search-symbol">⌕</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Pesquisar produtos, ofertas..."
+                autocomplete="off">
+
+            <button
+                id="clearSearch"
+                class="clear-search"
+                aria-label="Limpar pesquisa">
+                ×
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MENU LATERAL
+========================================================= -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay">
+</div>
+
+
+<aside
+    id="sideMenu"
+    class="side-menu">
+
+    <div class="side-menu-header">
+
+        <div class="side-logo">
+            <strong>M97</strong>
+            <span>seu mercado digital</span>
+        </div>
+
+        <button
+            id="closeMenu"
+            class="close-button">
+            ×
+        </button>
+
+    </div>
+
+
+    <nav class="side-navigation">
+
+        <a href="#inicio">
+            <span>⌂</span>
+            Início
+        </a>
+
+        <a href="#ofertas">
+            <span>🔥</span>
+            Ofertas
+        </a>
+
+        <a href="#categorias">
+            <span>▦</span>
+            Categorias
+        </a>
+
+        <a href="#produtos">
+            <span>🛍️</span>
+            Produtos
+        </a>
+
+        <a href="#beneficios">
+            <span>★</span>
+            Vantagens M97
+        </a>
+
+    </nav>
+
+
+    <div class="side-menu-divider"></div>
+
+
+    <div class="language-selector">
+
+        <strong>Idioma</strong>
+
+        <button class="language active" data-language="pt">
+            🇧🇷 Português
+        </button>
+
+        <button class="language" data-language="es">
+            🇪🇸 Español
+        </button>
+
+        <button class="language" data-language="en">
+            🇺🇸 English
+        </button>
+
+    </div>
+
+
+    <div class="side-menu-footer">
+
+        <small>
+            M97
+        </small>
+
+        <span>
+            Seu mercado digital
+        </span>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     CONTEÚDO PRINCIPAL
+========================================================= -->
+
+<main id="inicio">
+
+
+<!-- =========================================================
+     HERO / BANNER
+========================================================= -->
+
+<section class="hero-section">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            NOVO
+        </div>
+
+        <h1>
+            Seu mercado.
+            <br>
+            <strong>Seu jeito.</strong>
+        </h1>
+
+        <p>
+            Descubra produtos, ofertas e oportunidades
+            em um único lugar.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#produtos"
+                class="primary-button">
+                Explorar agora
+                <span>→</span>
+            </a>
+
+            <a
+                href="#ofertas"
+                class="secondary-button">
+                Ver ofertas
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ELEMENTO VISUAL DO HERO -->
+    <div class="hero-visual">
+
+        <div class="hero-circle hero-circle-one"></div>
+        <div class="hero-circle hero-circle-two"></div>
+
+        <div class="hero-card">
+
+            <div class="hero-card-top">
+
+                <span>OFERTA</span>
+
+                <span class="hero-discount">
+                    -50%
+                </span>
+
+            </div>
+
+            <div class="hero-product-symbol">
+                🛍️
+            </div>
+
+            <div class="hero-card-bottom">
+
+                <strong>
+                    Descubra
+                </strong>
+
+                <span>
+                    novas oportunidades
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BARRA DE ACESSO RÁPIDO
+========================================================= -->
+
+<section class="quick-access">
+
+    <a href="#ofertas" class="quick-item">
+        <div class="quick-icon">🔥</div>
+        <span>Ofertas</span>
+    </a>
+
+    <a href="#categorias" class="quick-item">
+        <div class="quick-icon">🏷️</div>
+        <span>Cupons</span>
+    </a>
+
+    <a href="#produtos" class="quick-item">
+        <div class="quick-icon">⭐</div>
+        <span>Mais vendidos</span>
+    </a>
+
+    <a href="#beneficios" class="quick-item">
+        <div class="quick-icon">💎</div>
+        <span>Premium</span>
+    </a>
+
+</section>
+
+
+<!-- =========================================================
+     CATEGORIAS
+========================================================= -->
+
+<section
+    id="categorias"
+    class="content-section">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-kicker">
+                EXPLORE
+            </span>
+
+            <h2>
+                Categorias
+            </h2>
+        </div>
+
+        <button
+            class="see-all"
+            id="seeAllCategories">
+            Ver tudo →
+        </button>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <button
+            class="category-card"
+            data-category="eletronicos">
+
+            <div class="category-icon electronics">
+                📱
+            </div>
+
+            <strong>
+                Eletrônicos
+            </strong>
+
+            <span>
+                Tecnologia
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="moda">
+
+            <div class="category-icon fashion">
+                👟
+            </div>
+
+            <strong>
+                Moda
+            </strong>
+
+            <span>
+                Estilo
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="casa">
+
+            <div class="category-icon home">
+                🏠
+            </div>
+
+            <strong>
+                Casa
+            </strong>
+
+            <span>
+                Conforto
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="beleza">
+
+            <div class="category-icon beauty">
+                ✨
+            </div>
+
+            <strong>
+                Beleza
+            </strong>
+
+            <span>
+                Cuidados
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="esportes">
+
+            <div class="category-icon sports">
+                ⚽
+            </div>
+
+            <strong>
+                Esportes
+            </strong>
+
+            <span>
+                Movimento
+            </span>
+
+        </button>
+
+
+        <button
+            class="category-card"
+            data-category="acessorios">
+
+            <div class="category-icon accessories">
+                🎧
+            </div>
+
+            <strong>
+                Acessórios
+            </strong>
+
+            <span>
+                Estilo & tech
+            </span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     OFERTAS
+========================================================= -->
+
+<section
+    id="ofertas"
+    class="offers-section">
+
+    <div class="offers-header">
+
+        <div>
+
+            <span class="section-kicker light">
+                OFERTAS ESPECIAIS
+            </span>
+
+            <h2>
+                Ofertas do dia
+            </h2>
+
+            <p>
+                Aproveite enquanto durar.
+            </p>
+
+        </div>
+
+
+        <div class="countdown">
+
+            <span>
+                Termina em
+            </span>
+
+            <div class="countdown-time">
+
+                <strong id="hours">
+                    08
+                </strong>
+
+                <i>:</i>
+
+                <strong id="minutes">
+                    42
+                </strong>
+
+                <i>:</i>
+
+                <strong id="seconds">
+                    19
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="products-horizontal"
+        id="offersProducts">
+
+
+        <!-- OFERTA 1 -->
+
+        <article
+            class="product-card offer-card"
+            data-product="smartphone">
+
+            <div class="product-image">
+
+                <span class="discount-badge">
+                    -30%
+                </span>
+
+                <button
+                    class="favorite-button"
+                    aria-label="Favoritar">
+                    ♡
+                </button>
+
+                <div class="product-placeholder">
+                    📱
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    ELETRÔNICOS
+                </span>
+
+                <h3>
+                    Smartphone Pro
+                </h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>
+                        4.9
+                    </span>
+                </div>
+
+                <div class="price-area">
+
+                    <span class="old-price">
+                        R$ 1.999,90
+                    </span>
+
+                    <strong class="price">
+                        R$ 1.399,90
+                    </strong>
+
+                </div>
+
+                <button
+                    class="add-cart"
+                    data-product="Smartphone Pro"
+                    data-price="1399.90">
+
+                    Adicionar
+                    <span>+</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- OFERTA 2 -->
+
+        <article
+            class="product-card offer-card"
+            data-product="fone">
+
+            <div class="product-image">
+
+                <span class="discount-badge">
+                    -45%
+                </span>
+
+                <button
+                    class="favorite-button"
+                    aria-label="Favoritar">
+                    ♡
+                </button>
+
+                <div class="product-placeholder">
+                    🎧
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    ACESSÓRIOS
+                </span>
+
+                <h3>
+                    Fone Wireless
+                </h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>
+                        4.8
+                    </span>
+                </div>
+
+                <div class="price-area">
+
+                    <span class="old-price">
+                        R$ 299,90
+                    </span>
+
+                    <strong class="price">
+                        R$ 164,90
+                    </strong>
+
+                </div>
+
+                <button
+                    class="add-cart"
+                    data-product="Fone Wireless"
+                    data-price="164.90">
+
+                    Adicionar
+                    <span>+</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- OFERTA 3 -->
+
+        <article
+            class="product-card offer-card"
+            data-product="tenis">
+
+            <div class="product-image">
+
+                <span class="discount-badge">
+                    -35%
+                </span>
+
+                <button
+                    class="favorite-button"
+                    aria-label="Favoritar">
+                    ♡
+                </button>
+
+                <div class="product-placeholder">
+                    👟
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    MODA
+                </span>
+
+                <h3>
+                    Tênis Urban
+                </h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>
+                        4.7
+                    </span>
+                </div>
+
+                <div class="price-area">
+
+                    <span class="old-price">
+                        R$ 399,90
+                    </span>
+
+                    <strong class="price">
+                        R$ 259,90
+                    </strong>
+
+                </div>
+
+                <button
+                    class="add-cart"
+                    data-product="Tênis Urban"
+                    data-price="259.90">
+
+                    Adicionar
+                    <span>+</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUTOS EM DESTAQUE
+========================================================= -->
+
+<section
+    id="produtos"
+    class="content-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-kicker">
+                SELEÇÃO M97
+            </span>
+
+            <h2>
+                Produtos em destaque
+            </h2>
+
+        </div>
+
+        <button
+            class="see-all"
+            id="seeAllProducts">
+            Ver tudo →
+        </button>
+
+    </div>
+
+
+    <div class="product-grid">
+
+
+        <!-- PRODUTO 1 -->
+
+        <article class="product-card">
+
+            <div class="product-image">
+
+                <button
+                    class="favorite-button"
+                    aria-label="Favoritar">
+                    ♡
+                </button>
+
+                <div class="product-placeholder">
+                    💻
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    TECNOLOGIA
+                </span>
+
+                <h3>
+                    Notebook M97
+                </h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>4.9</span>
+                </div>
+
+                <strong class="price">
+                    R$ 3.499,90
+                </strong>
+
+                <button
+                    class="add-cart"
+                    data-product="Notebook M97"
+                    data-price="3499.90">
+
+                    Adicionar
+                    <span>+</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUTO 2 -->
+
+        <article class="product-card">
+
+            <div class="product-image">
+
+                <button
+                    class="favorite-button"
+                    aria-label="Favoritar">
+                    ♡
+                </button>
+
+                <div class="product-placeholder">
+                    ⌚
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    ELETRÔNICOS
+                </span>
+
+                <h3>
+                    Smartwatch X
+                </h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>4.8</span>
+                </div>
+
+                <strong class="price">
+                    R$ 449,90
+                </strong>
+
+                <button
+                    class="add-cart"
+                    data-product="Smartwatch X"
+                    data-price="449.90">
+
+                    Adicionar
+                    <span>+</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUTO 3 -->
+
+        <article class="product-card">
+
+            <div class="product-image">
+
+                <button
+                    class="favorite-button"
+                    aria-label="Favoritar">
+                    ♡
+                </button>
+
+                <div class="product-placeholder">
+                    🎒
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    ACESSÓRIOS
+                </span>
+
+                <h3>
+                    Mochila Premium
+                </h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>4.8</span>
+                </div>
+
+                <strong class="price">
+                    R$ 189,90
+                </strong>
+
+                <button
+                    class="add-cart"
+                    data-product="Mochila Premium"
+                    data-price="189.90">
+
+                    Adicionar
+                    <span>+</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUTO 4 -->
+
+        <article class="product-card">
+
+            <div class="product-image">
+
+                <button
+                    class="favorite-button"
+                    aria-label="Favoritar">
+                    ♡
+                </button>
+
+                <div class="product-placeholder">
+                    🏠
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    CASA
+                </span>
+
+                <h3>
+                    Kit Casa Smart
+                </h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>4.7</span>
+                </div>
+
+                <strong class="price">
+                    R$ 329,90
+                </strong>
+
+                <button
+                    class="add-cart"
+                    data-product="Kit Casa Smart"
+                    data-price="329.90">
+
+                    Adicionar
+                    <span>+</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BANNER M97
+========================================================= -->
+
+<section class="premium-banner">
+
+    <div class="premium-banner-content">
+
+        <span class="section-kicker light">
+            EXPERIÊNCIA M97
+        </span>
+
+        <h2>
+            Tudo o que você procura.
+            <br>
+            Em um só lugar.
+        </h2>
+
+        <p>
+            Uma nova maneira de descobrir,
+            comparar e encontrar oportunidades.
+        </p>
+
+        <button class="premium-button">
+            Conhecer M97
+            <span>→</span>
+        </button>
+
+    </div>
+
+
+    <div class="premium-decoration">
+
+        <div class="floating-card card-one">
+            🛍️
+        </div>
+
+        <div class="floating-card card-two">
+            ⭐
+        </div>
+
+        <div class="floating-card card-three">
+            💎
+        </div>
+
+        <div class="premium-orbit"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BENEFÍCIOS
+========================================================= -->
+
+<section
+    id="beneficios"
+    class="content-section benefits-section">
+
+    <div class="section-heading centered">
+
+        <span class="section-kicker">
+            POR QUE M97?
+        </span>
+
+        <h2>
+            Feito para simplificar
+        </h2>
+
+        <p>
+            Uma experiência digital rápida,
+            simples e inteligente.
+        </p>
+
+    </div>
+
+
+    <div class="benefits-grid">
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Rápido
+            </h3>
+
+            <p>
+                Encontre o que procura
+                sem complicação.
+            </p>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                🔒
+            </div>
+
+            <h3>
+                Segurança
+            </h3>
+
+            <p>
+                Uma experiência pensada
+                para proteger seus dados.
+            </p>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                🌎
+            </div>
+
+            <h3>
+                Global
+            </h3>
+
+            <p>
+                Preparado para conectar
+                diferentes mercados.
+            </p>
+
+        </div>
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                💎
+            </div>
+
+            <h3>
+                Premium
+            </h3>
+
+            <p>
+                Design moderno e experiência
+                criada para você.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     NEWSLETTER
+========================================================= -->
+
+<section class="newsletter-section">
+
+    <div class="newsletter-content">
+
+        <span class="newsletter-icon">
+            ✉️
+        </span>
+
+        <div>
+
+            <h2>
+                Receba as melhores ofertas
+            </h2>
+
+            <p>
+                Novidades e oportunidades
+                diretamente para você.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <form
+        id="newsletterForm"
+        class="newsletter-form">
+
+        <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Seu melhor e-mail"
+            required>
+
+        <button type="submit">
+            Quero receber
+        </button>
+
+    </form>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                M97
+            </div>
+
+            <p>
+                Seu mercado digital.
+                <br>
+                Descubra. Escolha. Conecte.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                M97
+            </h3>
+
+            <a href="#inicio">
+                Início
+            </a>
+
+            <a href="#produtos">
+                Produtos
+            </a>
+
+            <a href="#ofertas">
+                Ofertas
+            </a>
+
+            <a href="#categorias">
+                Categorias
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Ajuda
+            </h3>
+
+            <a href="#">
+                Central de ajuda
+            </a>
+
+            <a href="#">
+                Como funciona
+            </a>
+
+            <a href="#">
+                Segurança
+            </a>
+
+            <a href="#">
+                Contato
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Siga M97
+            </h3>
+
+            <div class="social-links">
+
+                <a href="#" aria-label="Instagram">
+                    ◎
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    ♪
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    f
+                </a>
+
+                <a href="#" aria-label="YouTube">
+                    ▶
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 M97. Todos os direitos reservados.
+        </span>
+
+        <div>
+
+            <a href="#">
+                Privacidade
+            </a>
+
+            <a href="#">
+                Termos
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     CARRINHO
+========================================================= -->
+
+<div
+    id="cartPanel"
+    class="cart-panel">
+
+    <div class="cart-header">
+
+        <div>
+            <span>SEU</span>
+            <h2>Carrinho</h2>
+        </div>
+
+        <button
+            id="closeCart"
+            class="close-button">
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        id="cartItems"
+        class="cart-items">
+
+        <div class="empty-cart">
+
+            <div>
+                🛒
+            </div>
+
+            <h3>
+                Seu carrinho está vazio
+            </h3>
+
+            <p>
+                Adicione produtos para começar.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="cartTotal">
+                R$ 0,00
+            </strong>
+
+        </div>
+
+        <button
+            id="checkoutButton"
+            class="checkout-button">
+
+            Continuar
+            <span>→</span>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div
+    id="cartOverlay"
+    class="cart-overlay">
+</div>
+
+
+<!-- =========================================================
+     NOTIFICAÇÃO
+========================================================= -->
+
+<div
+    id="toast"
+    class="toast">
+
+    <span class="toast-icon">
+        ✓
+    </span>
+
+    <span id="toastMessage">
+        Produto adicionado!
+    </span>
+
+</div>
+
+
+<!-- =========================================================
+     NAVEGAÇÃO MOBILE
+========================================================= -->
+
+<nav class="mobile-navigation">
+
+    <a
+        href="#inicio"
+        class="mobile-nav-item active">
+
+        <span>⌂</span>
+
+        <small>
+            Início
+        </small>
+
+    </a>
+
+
+    <a
+        href="#categorias"
+        class="mobile-nav-item">
+
+        <span>▦</span>
+
+        <small>
+            Categorias
+        </small>
+
+    </a>
+
+
+    <a
+        href="#ofertas"
+        class="mobile-nav-item">
+
+        <span>🔥</span>
+
+        <small>
+            Ofertas
+        </small>
+
+    </a>
+
+
+    <button
+        id="mobileCart"
+        class="mobile-nav-item">
+
+        <span class="mobile-cart-icon">
+
+            🛒
+
+            <b id="mobileCartCount">
+                0
+            </b>
+
+        </span>
+
+        <small>
+            Carrinho
+        </small>
+
+    </button>
+
+
+    <button
+        id="mobileMenu"
+        class="mobile-nav-item">
+
+        <span>
+            ☰
+        </span>
+
+        <small>
+            Menu
+        </small>
+
+    </button>
+
+</nav>
+
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
