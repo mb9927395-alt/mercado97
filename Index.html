@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M97 - Tu Mercado Digital</title>
+    <style>
+        /* ================= ESTILOS GLOBALES ================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal simulando el teléfono */
+        .app-container {
+            width: 100%;
+            max-width: 414px; /* Ancho máximo de celular */
+            min-height: 100vh;
+            background-color: #0b0b0b;
+            position: relative;
+            padding-bottom: 80px; /* Espacio para la barra inferior */
+            overflow-x: hidden;
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .menu-icon { font-size: 24px; cursor: pointer; }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-m97 {
+            font-size: 28px;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: -1px;
+            display: flex;
+        }
+        .logo-m { color: #ffffff; }
+        .logo-9 { color: #ffb700; }
+        .logo-7 { color: #ff0000; }
+        .logo-subtitle {
+            font-size: 9px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -5px;
+        }
+
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+        
+        .notification { position: relative; font-size: 20px; }
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff0000;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wallet {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .wallet span { color: #ffb700; font-weight: bold; }
+
+        /* ================= BIENVENIDA Y BUSCADOR ================= */
+        .welcome { padding: 10px 20px; }
+        .welcome h1 { font-size: 22px; font-weight: 600; }
+        .welcome h1 span { color: #ffb700; }
+        .welcome p { color: #aaaaaa; font-size: 14px; margin-top: 5px; }
+
+        .search-bar {
+            margin: 15px 20px;
+            background: #1a1a1a;
+            border-radius: 25px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #333;
+        }
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 100%;
+            outline: none;
+            font-size: 15px;
+        }
+
+        /* ================= CATEGORÍAS ================= */
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 20px;
+            gap: 15px;
+            scrollbar-width: none;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        
+        .cat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 65px;
+        }
+        .cat-icon {
+            width: 60px;
+            height: 60px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+        .cat-item.active .cat-icon {
+            border-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        .cat-text { font-size: 11px; color: #aaaaaa; }
+        .cat-item.active .cat-text { color: white; }
+
+        /* ================= RADAR ================= */
+        .radar-section { padding: 20px; }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .section-header h2 { font-size: 18px; font-weight: bold; }
+        .section-header h2 span { color: #ff0000; font-style: italic; }
+        .section-header a { color: #ffb700; font-size: 12px; text-decoration: none; }
+
+        .radar-container {
+            position: relative;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, transparent 60%);
+        }
+        
+        /* Círculos del radar */
+        .circle {
+            position: absolute;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        .c1 { width: 100px; height: 100px; }
+        .c2 { width: 200px; height: 200px; }
+        .c3 { width: 300px; height: 300px; }
+        
+        .radar-center {
+            position: absolute;
+            z-index: 10;
+            background: #000;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
+        }
+
+        /* Productos en el radar */
+        .radar-item {
+            position: absolute;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .radar-item img { width: 50px; height: 50px; object-fit: contain; }
+        .radar-item .price { font-size: 12px; font-weight: bold; margin-top: 5px; }
+        .radar-item .com { font-size: 10px; color: #ffb700; }
+        
+        /* Posiciones fijas para el ejemplo */
+        .item-1 { top: 10px; left: 50%; transform: translateX(-50%); border-color: rgba(255,0,0,0.5); box-shadow: 0 0 15px rgba(255,0,0,0.2); }
+        .item-2 { bottom: 40px; left: 20px; }
+        .item-3 { bottom: 40px; right: 20px; }
+
+        /* ================= BANNER GANAR ================= */
+        .banner {
+            margin: 0 20px 20px 20px;
+            background: linear-gradient(90deg, #1a1a1a 0%, #2a1111 100%);
+            border: 1px solid #ff0000;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .banner-text h3 { font-size: 16px; margin-bottom: 5px; }
+        .banner-text h3 span { color: #ffb700; font-style: italic; }
+        .banner-text p { font-size: 11px; color: #aaa; max-width: 180px; }
+        .banner-btn {
+            background: #ffb700;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* ================= RECOMENDADOS ================= */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 20px;
+        }
+        .product-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .product-img {
+            height: 140px;
+            background: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .product-img img { width: 80%; height: auto; }
+        .discount {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff0000;
+            color: white;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .product-info { padding: 12px; }
+        .product-title { font-size: 13px; color: #ddd; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .product-price { font-size: 16px; font-weight: bold; color: white; }
+        .commission-tag {
+            display: inline-block;
+            margin-top: 8px;
+            border: 1px solid #ffb700;
+            color: #ffb700;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+
+        /* ================= BARRA INFERIOR ================= */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 414px;
+            background: #0b0b0b;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 15px 0;
+            z-index: 100;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #777;
+            font-size: 10px;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .nav-item.active { color: #ff0000; }
+        .nav-icon { font-size: 22px; }
+        
+        /* Botón central Publicar */
+        .nav-publish {
+            position: relative;
+            top: -20px;
+            background: #ff0000;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,0,0,0.4);
+            border: 3px solid #0b0b0b;
+        }
+        .nav-publish .nav-icon { font-size: 28px; font-weight: 300; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header class="header">
+            <div class="menu-icon">☰</div>
+            <div class="logo-container">
+                <div class="logo-m97">
+                    <span class="logo-m">M</span><span class="logo-9">9</span><span class="logo-7">7</span>
+                </div>
+                <div class="logo-subtitle">tu mercado digital</div>
+            </div>
+            <div class="header-actions">
+                <div class="notification">
+                    🔔 <span class="badge">3</span>
+                </div>
+                <div class="wallet">
+                    👛 <span>US$ 97.00</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="welcome">
+            <h1>¡Bienvenido, <span>Jose!</span></h1>
+            <p>¿Qué estás buscando hoy?</p>
+        </div>
+
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Descubre algo nuevo...">
+        </div>
+
+        <div class="categories">
+            <div class="cat-item active">
+                <div class="cat-icon">🔥</div>
+                <div class="cat-text">Tendencias</div>
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon">📱</div>
+                <div class="cat-text">Tecnología</div>
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon">🛋️</div>
+                <div class="cat-text">Hogar</div>
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon">👕</div>
+                <div class="cat-text">Moda</div>
+            </div>
+            <div class="cat-item">
+                <div class="cat-icon">⚽</div>
+                <div class="cat-text">Deportes</div>
+            </div>
+        </div>
+
+        <div class="radar-section">
+            <div class="section-header">
+                <h2>RADAR <span>M97</span></h2>
+                <a href="#">Ver todos ></a>
+            </div>
+            <p style="color: #aaa; font-size: 12px; margin-bottom: 20px;">Productos que están llamando la atención ahora</p>
+            
+            <div class="radar-container">
+                <div class="circle c1"></div>
+                <div class="circle c2"></div>
+                <div class="circle c3"></div>
+                
+                <div class="radar-center">
+                    <div class="logo-m97" style="font-size: 20px;">
+                        <span class="logo-m">M</span><span class="logo-9">9</span><span class="logo-7">7</span>
+                    </div>
+                </div>
+
+                <div class="radar-item item-1">
+                    <img src="https://via.placeholder.com/50/222222/FFFFFF?text=Audio" alt="Airpods">
+                    <div class="price">US$ 24.90</div>
+                    <div class="com">Comisión 12%</div>
+                </div>
+                <div class="radar-item item-2">
+                    <img src="https://via.placeholder.com/50/222222/FFFFFF?text=Camara" alt="Cámara">
+                    <div class="price">US$ 320.00</div>
+                    <div class="com">Comisión 8%</div>
+                </div>
+                <div class="radar-item item-3">
+                    <img src="https://via.placeholder.com/50/222222/FFFFFF?text=Tenis" alt="Tenis">
+                    <div class="price">US$ 42.00</div>
+                    <div class="com">Comisión 15%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="banner">
+            <div class="banner-text">
+                <h3>¿Quieres ganar con <span>M97</span>?</h3>
+                <p>Comparte productos, consigue compradores y recibe comisiones.</p>
+            </div>
+            <button class="banner-btn">Comenzar ahora →</button>
+        </div>
+
+        <div class="radar-section" style="padding-top: 0;">
+            <div class="section-header">
+                <h2><span>M97</span> piensa que esto te puede interesar</h2>
+                <a href="#">Ver más ></a>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <div class="discount">-20%</div>
+                    <img src="https://via.placeholder.com/100/333333/FFFFFF?text=iPhone" alt="Teléfono">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Smartphone Pro Max</div>
+                    <div class="product-price">US$ 999.00</div>
+                    <div class="commission-tag">Comisión 10%</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://via.placeholder.com/100/333333/FFFFFF?text=Reloj" alt="Reloj">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Smartwatch X7 Black</div>
+                    <div class="product-price">US$ 37.50</div>
+                    <div class="commission-tag">Comisión 15%</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 40px;"></div>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span>DESCUBRIR</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">🎯</span>
+                <span>RADAR</span>
+            </div>
+            
+            <div class="nav-item nav-publish">
+                <span class="nav-icon">+</span>
+                <span style="font-size: 9px; margin-top: -5px;">PUBLICAR</span>
+            </div>
+            
+            <div class="nav-item">
+                <span class="nav-icon">💲</span>
+                <span>GANAR</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span>YO</span>
+            </div>
+        </nav>
+
+    </div>
+
+</body>
+</html>
