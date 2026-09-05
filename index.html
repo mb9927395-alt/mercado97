@@ -1,139 +1,1637 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<meta name="theme-color" content="#050505">
-
-<title>M97 — Tu mercado digital</title>
-
-<style>
-
-/* ================================
-   CONFIGURACIÓN GENERAL
-================================ */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-    background: #050505;
-    color: white;
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+@keyframes ringPulse {
+
+    0% {
+        transform: scale(0.98);
+        opacity: 0.75;
+    }
+
+    50% {
+        transform: scale(1.02);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.98);
+        opacity: 0.75;
+    }
 }
 
-button,
-input {
-    font-family: inherit;
-}
+/* Contenido */
 
-button {
-    cursor: pointer;
-}
-
-/* ================================
-   PANTALLAS
-================================ */
-
-.screen {
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: none;
-}
-
-.screen.active {
-    display: flex;
-}
-
-/* ================================
-   PANTALLA M97
-================================ */
-
-#splash {
+.splash-content {
 
     position: relative;
 
-    align-items: center;
-    justify-content: center;
+    z-index: 5;
+
+    width: 90%;
+
+    max-width: 600px;
+
+    text-align: center;
+}
+
+/* LOGO */
+
+.brand {
+
+    font-size: clamp(90px, 23vw, 150px);
+
+    font-weight: 900;
+
+    line-height: 0.85;
+
+    letter-spacing: -8px;
+
+    animation:
+        logoAppear 1.2s ease forwards;
+}
+
+@keyframes logoAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.brand .m {
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.08);
+}
+
+.brand .number {
+
+    color: #ffc400;
+
+    text-shadow:
+        0 0 35px rgba(255,196,0,0.35);
+}
+
+/* Línea */
+
+.gold-line {
+
+    width: 180px;
+
+    height: 1px;
+
+    margin: 25px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffc400,
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,196,0,0.4);
+}
+
+/* Eslogan */
+
+.tagline {
+
+    color: #ffffff;
+
+    font-size: clamp(14px, 4vw, 21px);
+
+    letter-spacing: 0.32em;
+
+    text-transform: uppercase;
+
+    font-weight: 400;
+}
+
+/* Cargador */
+
+.loader {
+
+    width: 160px;
+
+    height: 4px;
+
+    margin: 45px auto 0;
+
+    border-radius: 10px;
+
+    background: #242424;
 
     overflow: hidden;
+}
+
+.loader span {
+
+    display: block;
+
+    width: 45%;
+
+    height: 100%;
+
+    background: #ffc400;
+
+    box-shadow:
+        0 0 15px #ffc400;
+
+    animation:
+        loading 2.4s infinite ease-in-out;
+}
+
+@keyframes loading {
+
+    0% {
+        transform: translateX(-130%);
+    }
+
+    100% {
+        transform: translateX(330%);
+    }
+}
+
+/* Botón de seguridad */
+
+#continueButton {
+
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 11px 25px;
+
+    border-radius: 30px;
+
+    border: 1px solid #ffc400;
+
+    background: rgba(255,196,0,0.08);
+
+    color: #ffc400;
+
+    font-weight: bold;
+}
+
+/* Texto inferior */
+
+.loading-text {
+
+    margin-top: 20px;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+/* ================================
+   LOGIN / REGISTRO
+================================ */
+
+#auth {
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
 
     background:
 
         radial-gradient(
-            circle at center,
-            rgba(255, 196, 0, 0.15),
-            transparent 30%
+            circle at top,
+            rgba(255,196,0,0.10),
+            transparent 40%
         ),
 
-        radial-gradient(
-            circle at center,
-            rgba(255, 196, 0, 0.06),
-            transparent 55%
-        ),
-
-        #030303;
+        #050505;
 }
 
-/* Anillos */
+.auth-card {
 
-.ring {
+    width: 100%;
 
-    position: absolute;
+    max-width: 440px;
 
-    width: min(90vw, 600px);
+    padding: 30px;
 
-    aspect-ratio: 1 / 1;
+    border-radius: 25px;
 
-    border-radius: 50%;
+    border: 1px solid #292929;
 
-    border: 1px solid rgba(255, 196, 0, 0.35);
+    background: #101010;
 
     box-shadow:
-        0 0 80px rgba(255, 196, 0, 0.08),
-        inset 0 0 80px rgba(255, 196, 0, 0.04);
-
-    animation:
-        ringPulse 4s ease-in-out infinite;
+        0 25px 80px rgba(0,0,0,0.6);
 }
 
-.ring::before {
+/* Mini logo */
 
-    content: "";
+.auth-logo {
 
-    position: absolute;
+    text-align: center;
 
-    inset: 5%;
+    font-size: 45px;
+
+    font-weight: 900;
+
+    letter-spacing: -4px;
+}
+
+.auth-logo span {
+
+    color: #ffc400;
+}
+
+.auth-title {
+
+    text-align: center;
+
+    color: #999;
+
+    margin-top: 8px;
+
+    margin-bottom: 25px;
+}
+
+/* Tabs */
+
+.tabs {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 4px;
+
+    padding: 4px;
+
+    border-radius: 13px;
+
+    background: #070707;
+
+    margin-bottom: 20px;
+}
+
+.tabs button {
+
+    padding: 12px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    color: #888;
+
+    background: transparent;
+}
+
+.tabs button.active {
+
+    color: #050505;
+
+    background: #ffc400;
+
+    font-weight: bold;
+}
+
+/* Campos */
+
+.field {
+
+    margin-bottom: 15px;
+}
+
+.field label {
+
+    display: block;
+
+    font-size: 13px;
+
+    color: #bbb;
+
+    margin-bottom: 7px;
+}
+
+.field input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    border: 1px solid #303030;
+
+    background: #181818;
+
+    color: white;
+
+    outline: none;
+}
+
+.field input:focus {
+
+    border-color: #ffc400;
+
+    box-shadow:
+        0 0 0 3px rgba(255,196,0,0.08);
+}
+
+/* Botón */
+
+.primary-button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 5px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd633,
+            #f2b800
+        );
+
+    color: #050505;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 10px 25px rgba(255,196,0,0.15);
+}
+
+.demo {
+
+    text-align: center;
+
+    color: #666;
+
+    font-size: 11px;
+
+    margin-top: 15px;
+}
+
+/* ================================
+   PÁGINA PRINCIPAL
+================================ */
+
+#home {
+
+    display: none;
+
+    min-height: 100vh;
+
+    background: #080808;
+
+    padding-bottom: 80px;
+}
+
+#home.active {
+
+    display: block;
+}
+
+/* Barra */
+
+.topbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+    padding: 14px 16px;
+
+    background:
+        rgba(8,8,8,0.94);
+
+    backdrop-filter:
+        blur(15px);
+
+    border-bottom:
+        1px solid #222;
+}
+
+.toprow {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.home-logo {
+
+    font-size: 30px;
+
+    font-weight: 900;
+
+    letter-spacing: -3px;
+}
+
+.home-logo span {
+
+    color: #ffc400;
+}
+
+.search {
+
+    flex: 1;
+
+    max-width: 500px;
+
+    padding: 11px 14px;
+
+    border-radius: 13px;
+
+    border: 1px solid #292929;
+
+    background: #171717;
+
+    color: white;
+
+    outline: none;
+}
+
+.cart {
+
+    width: 43px;
+
+    height: 43px;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255, 196, 0, 0.18);
+    border: 1px solid #292929;
+
+    background: #151515;
+
+    color: white;
+
+    font-size: 18px;
 }
 
-.ring::after {
+/* Contenido */
 
-    content: "";
+.container {
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+
+    padding: 18px 16px;
+}
+
+/* Banner */
+
+.hero {
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 220px;
+
+    padding: 25px;
+
+    border-radius: 24px;
+
+    border: 1px solid #292929;
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(255,196,0,0.13),
+            transparent 60%
+        ),
+
+        linear-gradient(
+            135deg,
+            #161616,
+            #0c0c0c
+        );
+}
+
+.hero::after {
+
+    content: "M97";
 
     position: absolute;
 
-    inset: -6%;
+    right: -15px;
 
-    border-radius: 50%;
+    bottom: -40px;
 
-    border: 1px solid rgba(255, 196, 0, 0.10);
+    font-size: 150px;
+
+    font-weight: 900;
+
+    color: rgba(255,196,0,0.04);
+}
+
+.hero h1 {
+
+    position: relative;
+
+    z-index: 2;
+
+    font-size: clamp(30px,7vw,52px);
+
+    line-height: 1;
+
+    max-width: 600px;
+}
+
+.hero p {
+
+    position: relative;
+
+    z-index: 2;
+
+    color: #aaa;
+
+    margin: 15px 0;
+
+    max-width: 550px;
+}
+
+.hero button {
+
+    position: relative;
+
+    z-index: 2;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    padding: 13px 18px;
+
+    background: #ffc400;
+
+    color: #050505;
+
+    font-weight: 900;
+}
+
+/* Secciones */
+
+.section-head {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 25px 2px 13px;
+}
+
+.section-head h2 {
+
+    font-size: 20px;
+}
+
+.section-head button {
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffc400;
+}
+
+/* Categorías */
+
+.categories {
+
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.categories::-webkit-scrollbar {
+
+    display: none;
+}
+
+.category {
+
+    min-width: 90px;
+
+    padding: 14px 8px;
+
+    border-radius: 16px;
+
+    border: 1px solid #292929;
+
+    background: #121212;
+
+    text-align: center;
+
+    color: #ddd;
+}
+
+.category-icon {
+
+    display: block;
+
+    font-size: 25px;
+
+    margin-bottom: 7px;
+}
+
+/* Productos */
+
+.products {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap: 12px;
+}
+
+.product {
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid #292929;
+
+    background: #121212;
+}
+
+.product-image {
+
+    height: 145px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 60px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #222,
+            #101010
+        );
+}
+
+.product-info {
+
+    padding: 12px;
+}
+
+.product-name {
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+.price {
+
+    color: #ffc400;
+
+    font-size: 18px;
+
+    font-weight: 900;
+}
+
+.rating {
+
+    margin-top: 5px;
+
+    color: #888;
+
+    font-size: 11px;
+}
+
+/* Navegación */
+
+.bottom-nav {
+
+    position: fixed;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 50;
+
+    border-top: 1px solid #292929;
+
+    background:
+        rgba(10,10,10,0.97);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+.nav-inner {
+
+    width: min(650px,100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+}
+
+.nav-button {
+
+    padding: 9px 5px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+.nav-button strong {
+
+    display: block;
+
+    font-size: 20px;
+
+    margin-bottom: 2px;
+}
+
+.nav-button.active {
+
+    color: #ffc400;
+}
+
+/* Escritorio */
+
+@media (min-width: 700px) {
+
+    .products {
+
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+    .product-image {
+
+        height: 170px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =================================
+     1. PRESENTACIÓN M97
+================================== -->
+
+<section id="splash" class="screen active">
+
+    <div class="ring"></div>
+
+    <div class="splash-content">
+
+        <div class="brand">
+
+            <span class="m">M</span><span class="number">97</span>
+
+        </div>
+
+        <div class="gold-line"></div>
+
+        <div class="tagline">
+
+            TU MERCADO DIGITAL
+
+        </div>
+
+        <div class="loader">
+
+            <span></span>
+
+        </div>
+
+        <button id="continueButton">
+
+            Continuar
+
+        </button>
+
+        <div class="loading-text">
+
+            Preparando tu experiencia...
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     2. LOGIN / REGISTRO
+================================== -->
+
+<section id="auth" class="screen">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+
+            M<span>97</span>
+
+        </div>
+
+        <div id="authTitle" class="auth-title">
+
+            Entra a tu mercado digital
+
+        </div>
+
+
+        <div class="tabs">
+
+            <button
+                id="loginTab"
+                class="active"
+                type="button">
+
+                Iniciar sesión
+
+            </button>
+
+            <button
+                id="registerTab"
+                type="button">
+
+                Registrarse
+
+            </button>
+
+        </div>
+
+
+        <form id="authForm">
+
+            <div
+                id="nameField"
+                class="field"
+                style="display:none;">
+
+                <label>
+
+                    Nombre
+
+                </label>
+
+                <input
+                    id="name"
+                    type="text"
+                    placeholder="Tu nombre">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+
+                    Correo electrónico
+
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="tu@correo.com"
+                    required>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+
+                    Contraseña
+
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="••••••••"
+                    minlength="4"
+                    required>
+
+            </div>
+
+
+            <button
+                id="authButton"
+                class="primary-button"
+                type="submit">
+
+                Entrar a M97
+
+            </button>
+
+        </form>
+
+
+        <div class="demo">
+
+            Modo de prueba — los datos no se envían a ningún servidor.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     3. PÁGINA PRINCIPAL
+================================== -->
+
+<section id="home" class="screen">
+
+    <header class="topbar">
+
+        <div class="toprow">
+
+            <div class="home-logo">
+
+                M<span>97</span>
+
+            </div>
+
+            <input
+                class="search"
+                type="search"
+                placeholder="Buscar productos...">
+
+            <button
+                class="cart"
+                type="button">
+
+                🛒
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- BANNER -->
+
+        <div class="hero">
+
+            <h1>
+
+                Encuentra lo que buscas.
+
+            </h1>
+
+            <p>
+
+                Productos, ofertas y oportunidades
+                en un solo lugar.
+
+            </p>
+
+            <button>
+
+                Ver ofertas
+
+            </button>
+
+        </div>
+
+
+        <!-- CATEGORÍAS -->
+
+        <div class="section-head">
+
+            <h2>
+
+                Categorías
+
+            </h2>
+
+            <button>
+
+                Ver todas ›
+
+            </button>
+
+        </div>
+
+
+        <div class="categories">
+
+            <div class="category">
+
+                <span class="category-icon">📱</span>
+
+                Electrónica
+
+            </div>
+
+            <div class="category">
+
+                <span class="category-icon">👕</span>
+
+                Moda
+
+            </div>
+
+            <div class="category">
+
+                <span class="category-icon">🏠</span>
+
+                Hogar
+
+            </div>
+
+            <div class="category">
+
+                <span class="category-icon">⚽</span>
+
+                Deportes
+
+            </div>
+
+            <div class="category">
+
+                <span class="category-icon">💄</span>
+
+                Belleza
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCTOS -->
+
+        <div class="section-head">
+
+            <h2>
+
+                Productos destacados
+
+            </h2>
+
+            <button>
+
+                Ver más ›
+
+            </button>
+
+        </div>
+
+
+        <div class="products">
+
+
+            <article class="product">
+
+                <div class="product-image">
+
+                    📱
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+
+                        Smartphone Pro
+
+                    </div>
+
+                    <div class="price">
+
+                        $199.99
+
+                    </div>
+
+                    <div class="rating">
+
+                        ★ 4.8 · En oferta
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product">
+
+                <div class="product-image">
+
+                    🎧
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+
+                        Auriculares Premium
+
+                    </div>
+
+                    <div class="price">
+
+                        $49.99
+
+                    </div>
+
+                    <div class="rating">
+
+                        ★ 4.7 · En oferta
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product">
+
+                <div class="product-image">
+
+                    ⌚
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+
+                        Reloj Inteligente
+
+                    </div>
+
+                    <div class="price">
+
+                        $89.99
+
+                    </div>
+
+                    <div class="rating">
+
+                        ★ 4.7 · Destacado
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product">
+
+                <div class="product-image">
+
+                    💻
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+
+                        Notebook Ultra
+
+                    </div>
+
+                    <div class="price">
+
+                        $599.99
+
+                    </div>
+
+                    <div class="rating">
+
+                        ★ 4.9 · Destacado
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- NAVEGACIÓN -->
+
+    <div class="bottom-nav">
+
+        <nav class="nav-inner">
+
+            <button class="nav-button active">
+
+                <strong>⌂</strong>
+
+                Inicio
+
+            </button>
+
+            <button class="nav-button">
+
+                <strong>▦</strong>
+
+                Categorías
+
+            </button>
+
+            <button class="nav-button">
+
+                <strong>♡</strong>
+
+                Favoritos
+
+            </button>
+
+            <button class="nav-button">
+
+                <strong>♙</strong>
+
+                Cuenta
+
+            </button>
+
+        </nav>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     JAVASCRIPT
+================================== -->
+
+<script>
+
+"use strict";
+
+
+/* ================================
+   REFERENCIAS
+================================ */
+
+const splash =
+    document.getElementById("splash");
+
+const auth =
+    document.getElementById("auth");
+
+const home =
+    document.getElementById("home");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+
+let alreadyAdvanced = false;
+
+
+/* ================================
+   CAMBIAR DE PANTALLA
+================================ */
+
+function showScreen(screen) {
+
+    splash.classList.remove("active");
+
+    auth.classList.remove("active");
+
+    home.classList.remove("active");
+
+    screen.classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* ================================
+   PASAR AL LOGIN
+================================ */
+
+function goToLogin() {
+
+    if (alreadyAdvanced) {
+
+        return;
+
+    }
+
+    alreadyAdvanced = true;
+
+    showScreen(auth);
+}
+
+
+/* ================================
+   AVANCE AUTOMÁTICO
+================================ */
+
+/*
+
+   IMPORTANTE:
+
+   No utilizamos archivos externos.
+
+   El propio index.html controla
+   toda la transición.
+
+*/
+
+setTimeout(function() {
+
+    goToLogin();
+
+}, 2500);
+
+
+/* ================================
+   BOTÓN DE RESPALDO
+================================ */
+
+setTimeout(function() {
+
+    if (!alreadyAdvanced) {
+
+        continueButton.style.display =
+            "inline-block";
+
+    }
+
+}, 3500);
+
+
+continueButton.addEventListener(
+    "click",
+    function() {
+
+        goToLogin();
+
+    }
+);
+
+
+/* ================================
+   LOGIN / REGISTRO
+================================ */
+
+const loginTab =
+    document.getElementById("loginTab");
+
+const registerTab =
+    document.getElementById("registerTab");
+
+const nameField =
+    document.getElementById("nameField");
+
+const nameInput =
+    document.getElementById("name");
+
+const authTitle =
+    document.getElementById("authTitle");
+
+const authButton =
+    document.getElementById("authButton");
+
+const authForm =
+    document.getElementById("authForm");
+
+
+let mode = "login";
+
+
+/* LOGIN */
+
+loginTab.addEventListener(
+    "click",
+    function() {
+
+        mode = "login";
+
+        loginTab.classList.add("active");
+
+        registerTab.classList.remove("active");
+
+        nameField.style.display = "none";
+
+        nameInput.required = false;
+
+        authTitle.textContent =
+            "Entra a tu mercado digital";
+
+        authButton.textContent =
+            "Entrar a M97";
+
+    }
+);
+
+
+/* REGISTRO */
+
+registerTab.addEventListener(
+    "click",
+    function() {
+
+        mode = "register";
+
+        registerTab.classList.add("active");
+
+        loginTab.classList.remove("active");
+
+        nameField.style.display = "block";
+
+        nameInput.required = true;
+
+        authTitle.textContent =
+            "Crea tu cuenta en M97";
+
+        authButton.textContent =
+            "Crear cuenta";
+
+    }
+);
+
+
+/* ================================
+   ENTRAR
+================================ */
+
+authForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (!email) {
+
+            return;
+
+        }
+
+
+        if (password.length < 4) {
+
+            alert(
+                "La contraseña debe tener al menos 4 caracteres."
+            );
+
+            return;
+
+        }
+
+
+        /*
+
+           Guardamos solamente una marca
+           local para esta DEMO.
+
+           No hay servidor todavía.
+
+        */
+
+        try {
+
+            localStorage.setItem(
+                "m97_user",
+                email
+            );
+
+        } catch (error) {
+
+            console.log(
+                "Almacenamiento local no disponible."
+            );
+
+        }
+
+
+        /* PASAR A LA PÁGINA PRINCIPAL */
+
+        showScreen(home);
+
+    }
+);
+
+
+/* ================================
+   NAVEGACIÓN INFERIOR
+================================ */
+
+const navButtons =
+    document.querySelectorAll(
+        ".nav-button"
+    );
+
+
+navButtons.forEach(
+    function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                navButtons.forEach(
+                    function(item) {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
 }
 
 @keyframes ringPulse {
